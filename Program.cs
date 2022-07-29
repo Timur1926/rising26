@@ -8,17 +8,17 @@ namespace TreningTimur
         {
             Console.WriteLine("*** User profile ***");
             Console.Write("Enter your name: ");
-            string myName = Console.ReadLine();
+            string firstName = Console.ReadLine();
             Console.Write("Enter your last name: ");
-            string myLastName = Console.ReadLine();
+            string lastName = Console.ReadLine();
             Console.Write("Enter your age: ");
-            int myAge = Convert.ToInt32(Console.ReadLine());
+            int age = Convert.ToInt32(Console.ReadLine());
             Console.Write("Enter your height: ");
-            int myHeight = Convert.ToInt32(Console.ReadLine());
+            int height = Convert.ToInt32(Console.ReadLine());
             Console.Write("Enter your weight: ");
-            double myWeight = Convert.ToDouble(Console.ReadLine());
+            double weight = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine("--------------------------------------");
-            Console.WriteLine($"Name: {myName}\nLast name: {myLastName}\nAge: {myAge}\nHeight: {myHeight}см\nWeight: {myWeight}кг");
+            Console.WriteLine($"Name: {firstName}\nLast name: {lastName}\nAge: {age}\nHeight: {height}см\nWeight: {weight}кг");
         }
     }
 }
