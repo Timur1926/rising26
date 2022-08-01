@@ -12,8 +12,10 @@ namespace TreningTimur
             Console.Write($"Какое количество кристалов вы хотите купить? - ");
             int crystals = Convert.ToInt32(Console.ReadLine());
             int userCrystals = crystals;
+            int convertCrystals = 5;
+            gold -= crystals * convertCrystals;
             Console.WriteLine("--------------------------------------------");
-            Console.WriteLine($"Количество золота у пользователя после сделки : {gold - (crystals*5)}");
+            Console.WriteLine($"Количество золота у пользователя после сделки : {gold}");
             Console.WriteLine($"Количество кристалов у пользователя после сделки : {userCrystals}");
         }
     }
