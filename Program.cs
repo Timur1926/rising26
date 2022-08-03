@@ -6,16 +6,25 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            int crystalPrice = 5;
-            Console.Write($"Введите количество золота в кошельке: ");
-            int gold = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine($"=> цена за 1 крстала = {crystalPrice} золотых");
-            Console.Write($"Какое количество кристалов вы хотите купить? - ");
-            int crystals = Convert.ToInt32(Console.ReadLine());
-            gold -= crystals * crystalPrice;
-            Console.WriteLine("--------------------------------------------");
-            Console.WriteLine($"Количество золота у пользователя после сделки : {gold}");
-            Console.WriteLine($"Количество кристалов у пользователя после сделки : {crystals}");
+            Console.WriteLine("*** Расчёт времени ожидания в очереди ***\n");
+            int receptionTime = 10;
+            Console.Write($"Введи количество людей в очереди: ");
+            int numberOfPeople = Convert.ToInt32(Console.ReadLine());
+            int hour = 0;
+            int minute = 0;
+            for (int i = 1; i <= numberOfPeople; i++)
+            {
+                if (minute == 50)
+                {
+                    minute = 0;
+                    hour += 1;
+                }
+                else
+                {
+                    minute += receptionTime;
+                }
+            }
+            Console.WriteLine($"Вы должны отстоять в очереди {hour} часа {minute} мин ");
         }
     }
 }
