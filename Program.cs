@@ -20,16 +20,6 @@ namespace TreningTimur
                  minuteCount %= minute;
             }
             Console.WriteLine($"Вы должны отстоять в очереди {hourCount} часа {minuteCount} мин ");
-            
-            
-            
-            
-           
-            
-           
-
-           
-            
         }
     }
 }
