@@ -13,15 +13,15 @@ namespace TreningTimur
             int hourCount;
             int minuteCount;
             int minutesInHour = 60;
-            int notFullHour;
+            int minutes;
             minuteCount = receptionTime * peopleCount;
-            notFullHour = minuteCount;
+            minutes = minuteCount;
             hourCount = minuteCount / minutesInHour;
             if (minuteCount >= minutesInHour)
             {
-                notFullHour %= minutesInHour;
+                minutes %= minutesInHour;
             }
-            Console.WriteLine($"Вы должны отстоять в очереди {hourCount} часа {notFullHour} мин");
+            Console.WriteLine($"Вы должны отстоять в очереди {hourCount} часа {minutes} мин");
         }
     }
 }
