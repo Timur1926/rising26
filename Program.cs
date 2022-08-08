@@ -9,22 +9,27 @@ namespace TreningTimur
             Console.WriteLine("*** Расчёт времени ожидания в очереди ***\n");
             int receptionTime = 10;
             Console.Write($"Введи количество людей в очереди: ");
-            int numberOfPeople = Convert.ToInt32(Console.ReadLine());
-            int hour = 0;
-            int minute = 0;
-            for (int i = 1; i <= numberOfPeople; i++)
+            int peopleCount = Convert.ToInt32(Console.ReadLine());
+            int hourCount;
+            int minuteCount;
+            int minute = 60;
+            minuteCount = receptionTime * peopleCount;
+            hourCount = minuteCount / minute;
+            if (minuteCount >= minute)
             {
-                if (minute == 50)
-                {
-                    minute = 0;
-                    hour += 1;
-                }
-                else
-                {
-                    minute += receptionTime;
-                }
+                 minuteCount %= minute;
             }
-            Console.WriteLine($"Вы должны отстоять в очереди {hour} часа {minute} мин ");
+            Console.WriteLine($"Вы должны отстоять в очереди {hourCount} часа {minuteCount} мин ");
+            
+            
+            
+            
+           
+            
+           
+
+           
+            
         }
     }
 }
