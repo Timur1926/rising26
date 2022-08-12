@@ -18,7 +18,7 @@ namespace _10_DifferentVariables
             int airTemperatureInWinter = -20;
             string studentInformation = "Учусь C# на курсе \"яюниор\"";
             byte weight = 80;
-            long goldCurrReservesRF = 574_805_146_999;
+            long goldCurrencyReservesRF = 574_805_146_999;
             uint mercedesGlsPrice = 12_500_260; 
         }
     }
