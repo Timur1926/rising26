@@ -6,15 +6,16 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            string firstname = "Kutupov";
-            string lastName = "Timur";
-            string changeData;
-            Console.WriteLine($"{firstname} {lastName}");
-            changeData = firstname;
-            firstname = lastName;
-            lastName = changeData;
-            Console.WriteLine("--------------");
-            Console.WriteLine($"{firstname} {lastName}");
+            int exchangeRate = 5;
+            int numberOfCrystals = 1;
+            Console.WriteLine($"Обменный курс {exchangeRate} золота = {numberOfCrystals} кристал");
+            Console.Write("Введите количества золота: ");
+            int amauntGold = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Скольео кристалов вы хотите купит?: ");
+            numberOfCrystals = Convert.ToInt32(Console.ReadLine());
+            amauntGold -= numberOfCrystals * exchangeRate;
+            Console.WriteLine($"Количество вашего золота: {amauntGold}");
+            Console.WriteLine($"Количество ваших кристалов: {numberOfCrystals}");
         }
     }
 }
