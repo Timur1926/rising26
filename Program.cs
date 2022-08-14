@@ -6,13 +6,15 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            int countRows;
-            int numberOfPictures = 52;
-            int countColumns = 3;
-            int extraPictures = numberOfPictures % countColumns;
-            countRows = numberOfPictures / countColumns;
-            Console.WriteLine($"Полностью заполненых рядов: {countRows}");
-            Console.WriteLine($"Лишних картинок: {extraPictures}");
+            string firstname = "Kutupov";
+            string lastName = "Timur";
+            string changeData;
+            Console.WriteLine($"{firstname} {lastName}");
+            changeData = firstname;
+            firstname = lastName;
+            lastName = changeData;
+            Console.WriteLine("--------------");
+            Console.WriteLine($"{firstname} {lastName}");
         }
     }
 }
