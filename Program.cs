@@ -6,15 +6,16 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            int numberOfPeopleInLine;
-            int timeForOnePerson = 10;
-            int minutesInHour = 60;
-            Console.Write("Количество людей в очереди: ");
-            numberOfPeopleInLine = Convert.ToInt32(Console.ReadLine());
-            int waitingTimeMinutes = numberOfPeopleInLine * timeForOnePerson;
-            int waitingTimeHour = waitingTimeMinutes / minutesInHour;
-            waitingTimeMinutes %= minutesInHour;
-            Console.WriteLine($"Вы должны остаять в очереди {waitingTimeHour} часа {waitingTimeMinutes} минут");
+            int numberOfCyclest;
+            string userMessage;
+            Console.Write("Введите желаемое количество циклов: ");
+            numberOfCyclest = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите ваше сообщение: ");
+            userMessage = Console.ReadLine();
+            for (int i = 1; i <= numberOfCyclest; i++)
+            {
+                Console.WriteLine($"{i}) {userMessage}");
+            }
         }
     }
 }
