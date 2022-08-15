@@ -6,18 +6,21 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            int numberOfCyclest;
-            string userMessage;
-            Console.Write("Введите желаемое количество циклов: ");
-            numberOfCyclest = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Введите ваше сообщение: ");
-            userMessage = Console.ReadLine();
+            int numberOfCycles = 1;
 
-            for (int i = 1; i <= numberOfCyclest; i++)
+            while(numberOfCycles > 0)
             {
-                Console.WriteLine($"{i}) {userMessage}");
+                Console.WriteLine("Чтобы остановить выполнение программы введи: exit");
+                string exit = Console.ReadLine();
+                if (exit=="exit")
+                {
+                    break;
+                }
+                Console.ReadKey();
+                numberOfCycles++;
             }
 
+            Console.WriteLine("Программа закончена!!!");
         }
     }
 }
