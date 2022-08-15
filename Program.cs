@@ -12,10 +12,12 @@ namespace TreningTimur
             numberOfCyclest = Convert.ToInt32(Console.ReadLine());
             Console.Write("Введите ваше сообщение: ");
             userMessage = Console.ReadLine();
+
             for (int i = 1; i <= numberOfCyclest; i++)
             {
                 Console.WriteLine($"{i}) {userMessage}");
             }
+
         }
     }
 }
