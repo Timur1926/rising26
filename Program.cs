@@ -6,16 +6,13 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            string exit = "exit";
-            string cycleСontinues = " ";
 
-            while (cycleСontinues != exit)
+            for (int i = 5; i <= 96; i += 7)
             {
-                Console.WriteLine($"Чтобы остановить выполнение программы введи команду: {cycleСontinues}");
-                cycleСontinues = Console.ReadLine();
+                Console.Write($"{i}  ");
             }
 
-            Console.WriteLine("Программа закончена!!!");
+            Console.WriteLine();
         }
     }
 }
