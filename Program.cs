@@ -6,16 +6,27 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            int cycleStart = 5;
-            int endOfCycle = 96;
-            int iteratorChange = 7;
-
-            for (int i = cycleStart; i <= endOfCycle; i += iteratorChange)
+            Random rand = new Random();
+            int number = rand.Next(0,101);
+            int divider3 = 3;
+            int divider5 = 5;
+            int resalt = 0;
+            
+            for(int i = 0; i <= number; i++)
             {
-                Console.Write($"{i}  ");
-            }
 
-            Console.WriteLine();
+                if (i % divider3 == 0 && i <= number)
+                {
+                    resalt += i;
+                }
+                else if (i % divider5 == 0 && i <= number)
+                {
+                    resalt += i;
+                }
+                
+            }
+            
+            Console.WriteLine(resalt);
         }
     }
 }
