@@ -6,8 +6,9 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            Random rand = new Random();
-            int number = rand.Next(0,101);
+            Random random = new Random();
+            int maximumКandom = 101;
+            int number = random.Next(0,maximumКandom);
             int divider3 = 3;
             int divider5 = 5;
             int resalt = 0;
@@ -15,11 +16,7 @@ namespace TreningTimur
             for(int i = 0; i <= number; i++)
             {
 
-                if (i % divider3 == 0 && i <= number)
-                {
-                    resalt += i;
-                }
-                else if (i % divider5 == 0 && i <= number)
+                if (i % divider3 == 0 || i % divider5 == 0)
                 {
                     resalt += i;
                 }
