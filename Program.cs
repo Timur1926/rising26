@@ -7,8 +7,8 @@ namespace TreningTimur
         static void Main(string[] args)
         {
             Random random = new Random();
-            int maximumКandom = 101;
-            int number = random.Next(0,maximumКandom);
+            int maximumRandom = 101;
+            int number = random.Next(0,maximumRandom);
             int divider3 = 3;
             int divider5 = 5;
             int resalt = 0;
