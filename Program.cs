@@ -17,8 +17,6 @@ namespace TreningTimur
             int operationNumber = 0;
             int exit = 0;
 
-           
-
             while (exit != 6)
             {
                 Console.Write($"действие №: ");
