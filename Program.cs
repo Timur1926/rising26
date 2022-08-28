@@ -9,28 +9,26 @@ namespace TreningTimur
         {
             string userName;
             string userSymbol;
-            int iterationNumber = 2;
+            string countSymbol = "";
 
             Console.Write("Введите своё имя: ");
             userName = Console.ReadLine();
-            Console.Write("Введите символ: ");
+            Console.Write("Введите свой символ:");
             userSymbol = Console.ReadLine();
 
-            for (int i = 0; i <= iterationNumber; i++)
+            for (int i = -1; i <= userName.Length; i++)
             {
-                if (i == 0 || i == 2)
+                Console.Write(userSymbol);
+                if (i == userName.Length)
                 {
-                    for (int j = 1; j <= userName.Length + 2; j++)
-                    {
-                        Console.Write(userSymbol);
-                    }
+                    Console.WriteLine();
+                    Console.Write(userSymbol + userName + userSymbol);
                 }
-                else if (i == 1)
-                {
-                    Console.Write($"{userSymbol}{userName}{userSymbol}");
-                }
-                Console.WriteLine();
+                countSymbol += userSymbol;
             }
+            Console.WriteLine();
+            Console.WriteLine(countSymbol);
+            
         }
     }
 }
