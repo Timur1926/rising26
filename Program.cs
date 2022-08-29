@@ -8,27 +8,23 @@ namespace TreningTimur
         static void Main(string[] args)
         {
             string userName;
-            string userSymbol;
+            char userSymbol;
             string countSymbol = "";
+            int optionalIterator = 1;
 
             Console.Write("Введите своё имя: ");
             userName = Console.ReadLine();
             Console.Write("Введите свой символ:");
-            userSymbol = Console.ReadLine();
+            userSymbol = Convert.ToChar(Console.ReadLine());
 
-            for (int i = -1; i <= userName.Length; i++)
+            for (int i = 0; i <= userName.Length + optionalIterator; i++)
             {
-                Console.Write(userSymbol);
-                if (i == userName.Length)
-                {
-                    Console.WriteLine();
-                    Console.Write(userSymbol + userName + userSymbol);
-                }
                 countSymbol += userSymbol;
             }
-            Console.WriteLine();
+
             Console.WriteLine(countSymbol);
-            
+            Console.WriteLine(userSymbol + userName + userSymbol);
+            Console.WriteLine(countSymbol);
         }
     }
 }
