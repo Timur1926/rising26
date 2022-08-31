@@ -7,7 +7,6 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-
             int numberAttempts = 3;
             Console.WriteLine("=> Для того чтоб увидеть секретное сообщение введите пороль!!!");
             Console.Write($"У вас {numberAttempts} попытки: ");
@@ -19,14 +18,14 @@ namespace TreningTimur
                 if (password == enterPasword.ToUpper())
                 {
                     Console.WriteLine("Поздравляем вы HAPPY!!!!");
-                    break;
+                    i = numberAttempts;
                 }
                 else
                 {
                     Console.WriteLine($"У вас осталось {numberAttempts - i} попыток!!!");
                 }
             }
-
+            
         }
     }
 }
