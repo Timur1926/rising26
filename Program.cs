@@ -7,24 +7,26 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            string userName;
-            char userSymbol;
-            string countSymbol = "";
-            int optionalIterator = 1;
 
-            Console.Write("Введите своё имя: ");
-            userName = Console.ReadLine();
-            Console.Write("Введите свой символ:");
-            userSymbol = Convert.ToChar(Console.ReadLine());
+            int numberAttempts = 3;
+            Console.WriteLine("=> Для того чтоб увидеть секретное сообщение введите пороль!!!");
+            Console.Write($"У вас {numberAttempts} попытки: ");
+            string password = "RRR2022";
 
-            for (int i = 0; i <= userName.Length + optionalIterator; i++)
+            for (int i = 1; i <= numberAttempts; i++)
             {
-                countSymbol += userSymbol;
+                string enterPasword = Console.ReadLine();
+                if (password == enterPasword.ToUpper())
+                {
+                    Console.WriteLine("Поздравляем вы HAPPY!!!!");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine($"У вас осталось {numberAttempts - i} попыток!!!");
+                }
             }
 
-            Console.WriteLine(countSymbol);
-            Console.WriteLine(userSymbol + userName + userSymbol);
-            Console.WriteLine(countSymbol);
         }
     }
 }
