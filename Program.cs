@@ -8,7 +8,7 @@ namespace TreningTimur
         static void Main(string[] args)
         {
             int numberAttempts = 3;
-            int attempts= 3;
+            int attempts = 3;
             Console.WriteLine("=> Для того чтоб увидеть секретное сообщение введите пороль!!!");
             Console.Write($"У вас {numberAttempts} попытки: ");
             string password = "RRR2022";
@@ -29,7 +29,7 @@ namespace TreningTimur
                     Console.WriteLine($"У вас осталось {attempts} попыток!!!");
                 }
             }
-            
+
         }
     }
 }
