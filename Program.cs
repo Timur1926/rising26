@@ -15,6 +15,7 @@ namespace TreningTimur
             for (int i = 1; i <= numberAttempts; i++)
             {
                 string enterPasword = Console.ReadLine();
+
                 if (password == enterPasword.ToUpper())
                 {
                     Console.WriteLine("Поздравляем вы HAPPY!!!!");
