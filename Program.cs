@@ -7,29 +7,25 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            int numberAttempts = 3;
-            int attempts = 3;
-            Console.WriteLine("=> Для того чтоб увидеть секретное сообщение введите пороль!!!");
-            Console.Write($"У вас {numberAttempts} попытки: ");
-            string password = "RRR2022";
+            Random random = new Random();
+            int randomN = random.Next(1, 27);
+            int topThreeDigitNumber = 999;
+            int bottomThreeDigitNumber = 100;
+            int summRandom = 0;
+            int resalt = 0;
 
-            for (int i = 1; i <= numberAttempts; i++)
+            for (int i = 0; i <= topThreeDigitNumber; i++)
             {
-                string enterPasword = Console.ReadLine();
+                summRandom += randomN;
 
-                if (password == enterPasword.ToUpper())
+                if (summRandom >= bottomThreeDigitNumber && summRandom <= topThreeDigitNumber)
                 {
-
-                    Console.WriteLine("Поздравляем вы HAPPY!!!!");
-                    i = numberAttempts;
+                    resalt += 1;
                 }
-                else
-                {
-                    attempts--;
-                    Console.WriteLine($"У вас осталось {attempts} попыток!!!");
-                }
+                
             }
 
+            Console.WriteLine("Количество трёхзначных чисел кратных N = "+ resalt);
         }
     }
 }
