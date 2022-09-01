@@ -8,17 +8,18 @@ namespace TreningTimur
         static void Main(string[] args)
         {
             Random random = new Random();
-            int randomN = random.Next(1, 27);
-            int topThreeDigitNumber = 999;
-            int bottomThreeDigitNumber = 100;
+            int lowerRangeRandom = 1;
+            int upperRangeRandom = 27;
+            int randomN = random.Next(lowerRangeRandom, upperRangeRandom);
+            int topDigitNumber = 999;
+            int bottomDigitNumber = 100;
             int summRandom = 0;
             int resalt = 0;
 
-            for (int i = 0; i <= topThreeDigitNumber; i++)
+            for (int i = 0; i <= (summRandom += randomN); i++)
             {
-                summRandom += randomN;
 
-                if (summRandom >= bottomThreeDigitNumber && summRandom <= topThreeDigitNumber)
+                if (summRandom >= bottomDigitNumber && summRandom <= topDigitNumber)
                 {
                     resalt += 1;
                 }
