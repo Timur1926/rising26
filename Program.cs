@@ -16,17 +16,18 @@ namespace TreningTimur
             int summRandom = 0;
             int resalt = 0;
 
-            for (int i = 0; i <= (summRandom += randomN); i++)
+            while (summRandom <= topDigitNumber)
             {
+                summRandom += randomN;
 
                 if (summRandom >= bottomDigitNumber && summRandom <= topDigitNumber)
                 {
-                    resalt += 1;
+                    resalt++;
                 }
                 
             }
 
-            Console.WriteLine("Количество трёхзначных чисел кратных N = "+ resalt);
+            Console.WriteLine($"Количество трехзначных натуральных чисел, которых N = {resalt}");
         }
     }
 }
