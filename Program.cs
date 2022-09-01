@@ -13,12 +13,11 @@ namespace TreningTimur
             int randomN = random.Next(lowerRangeRandom, upperRangeRandom);
             int topDigitNumber = 999;
             int bottomDigitNumber = 100;
-            int summRandom;
+            int summRandom = 0;
             int resalt = 0;
 
-            for (int i = 0; i <= (i += randomN); i++)
+            for (int i = 0; i <= (summRandom += randomN); i++)
             {
-                summRandom = i;
 
                 if (summRandom >= bottomDigitNumber && summRandom <= topDigitNumber)
                 {
