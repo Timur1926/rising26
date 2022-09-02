@@ -8,23 +8,24 @@ namespace TreningTimur
         static void Main(string[] args)
         {
             Random random = new Random();
-            int lowerRangeRandom = 1;
-            int upperRangeRandom = 27;
-            int randomNumber = random.Next(lowerRangeRandom, upperRangeRandom);
-            int maxNumber = 999;
-            int minNumber = 100;
-            int summRandom;
-            int result = 0;
-        
-            for (summRandom = 0; summRandom <= maxNumber; summRandom += randomNumber)
+            int minValue = 3;
+            int maxValue = 50;
+            int number2 = 2;
+            int degree;
+            int randomValue = random.Next(minValue, maxValue);
+            int result;
+
+            Console.WriteLine($"Введите минимальную степень числа {number2} чтоб оно было больше {randomValue}");
+            Console.Write("Минимальная степень: ");
+            degree = Convert.ToInt32(Console.ReadLine());
+
+            for (result = number2; randomValue >= result; result *= number2)
             {
-                if (summRandom >= minNumber)
-                {
-                    result++;
-                }
+                
             }
-            
-            Console.WriteLine($"Количество трехзначных натуральных чисел, которых N = {result}");
+
+            Console.WriteLine($"Для числа {randomValue} будет {number2} в степени {degree}, то есть {result}");
+            Console.WriteLine($"А {randomValue} < {result}");
         }
     }
 }
