@@ -16,14 +16,12 @@ namespace TreningTimur
             int summRandom;
             int result = 0;
         
-            for (summRandom = 0;  summRandom <= maxNumber; summRandom += randomNumber)
+            for (summRandom = 0; summRandom <= maxNumber; summRandom += randomNumber)
             {
-
                 if (summRandom >= minNumber)
                 {
                     result++;
                 }
-
             }
             
             Console.WriteLine($"Количество трехзначных натуральных чисел, которых N = {result}");
