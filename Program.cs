@@ -10,24 +10,23 @@ namespace TreningTimur
             Random random = new Random();
             int lowerRangeRandom = 1;
             int upperRangeRandom = 27;
-            int randomN = random.Next(lowerRangeRandom, upperRangeRandom);
-            int topDigitNumber = 999;
-            int bottomDigitNumber = 100;
-            int summRandom = 0;
-            int resalt = 0;
-
-            while (summRandom <= topDigitNumber)
+            int randomNumber = random.Next(lowerRangeRandom, upperRangeRandom);
+            int maxNumber = 999;
+            int minNumber = 100;
+            int summRandom;
+            int result = 0;
+        
+            for (summRandom = 0;  summRandom <= maxNumber; summRandom += randomNumber)
             {
-                summRandom += randomN;
 
-                if (summRandom >= bottomDigitNumber && summRandom <= topDigitNumber)
+                if (summRandom >= minNumber)
                 {
-                    resalt++;
+                    result++;
                 }
-                
-            }
 
-            Console.WriteLine($"Количество трехзначных натуральных чисел, которых N = {resalt}");
+            }
+            
+            Console.WriteLine($"Количество трехзначных натуральных чисел, которых N = {result}");
         }
     }
 }
