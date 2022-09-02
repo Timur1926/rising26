@@ -19,10 +19,7 @@ namespace TreningTimur
             Console.Write("Минимальная степень: ");
             degree = Convert.ToInt32(Console.ReadLine());
 
-            for (result = number2; randomValue >= result; result *= number2)
-            {
-                
-            }
+            for (result = number2; randomValue >= result; result *= number2){  }
 
             Console.WriteLine($"Для числа {randomValue} будет {number2} в степени {degree}, то есть {result}");
             Console.WriteLine($"А {randomValue} < {result}");
