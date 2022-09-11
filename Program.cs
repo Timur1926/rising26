@@ -17,17 +17,23 @@ namespace TreningTimur
             {
 
                 if (text[i] == '(')
+                {
                     symbol++;
+                }
                 else if (text[i] == ')')
                 {
                     if (i != text.Length - 1 && text[i + 1] != '(')
+                    {
                         count++;
+                    }
                     symbol--;
                 }
+
                 if (symbol < numberEquals)
                 {
                     break;
                 }
+
                 if (symbol == numberEquals)
                 {
                     result = count;
@@ -36,11 +42,16 @@ namespace TreningTimur
             }
 
             if (symbol == numberEquals)
-                Console.WriteLine("Строка корректная " + text + "\n" + "Максимум глубина равняется: " + (result + 1));
-            else Console.WriteLine("Ошибка! Не верная строка " + text);
+            {
+                Console.WriteLine("Строка корректная " + text + "\n" + "Максимум глубина равняется: " + (result + numberEquals));
+            }
+            else
+            {
+                Console.WriteLine("Ошибка! Не верная строка " + text);
+            }
 
         }
-        
-    
+
+
     }
 }
