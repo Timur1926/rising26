@@ -50,7 +50,6 @@ namespace TreningTimur
             {
                 Console.WriteLine("Ошибка! Не верная строка " + text);
             }
-
         }
     }
 }
