@@ -16,7 +16,6 @@ namespace TreningTimur
 
             for (int i = 0; i < text.Length; i++)
             {
-
                 if (text[i] == '(')
                 {
                     symbol++;
@@ -40,7 +39,6 @@ namespace TreningTimur
                 {
                     result = count;
                 }
-
             }
 
             if (symbol == numberEquals)
