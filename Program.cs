@@ -12,6 +12,7 @@ namespace TreningTimur
             int count = 0;
             int result = 0;
             int numberEquals = 0;
+            int finishResult = 0;
 
             for (int i = 0; i < text.Length; i++)
             {
@@ -26,6 +27,7 @@ namespace TreningTimur
                     {
                         count++;
                     }
+
                     symbol--;
                 }
 
@@ -43,7 +45,8 @@ namespace TreningTimur
 
             if (symbol == numberEquals)
             {
-                Console.WriteLine("Строка корректная " + text + "\n" + "Максимум глубина равняется: " + (result + numberEquals));
+                finishResult = result + numberEquals;
+                Console.WriteLine("Строка корректная " + text + "\n" + "Максимум глубина равняется: " + finishResult);
             }
             else
             {
