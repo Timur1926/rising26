@@ -17,8 +17,6 @@ namespace TreningTimur
             int pieceIce = 20;
             int smallpox = 29;
             int cure = 50;
-           
-
             int boss = 100;
             int hammer = 30;
             int sword = 25;
