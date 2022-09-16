@@ -22,7 +22,6 @@ namespace TreningTimur
 
                     if (i == rowNumber1)
                         resultSum += mass[i, j];
-
                    
                 }
                 
