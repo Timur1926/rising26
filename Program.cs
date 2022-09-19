@@ -9,10 +9,8 @@ namespace TreningTimur
             int[,] mass = { { 5, 10, 15 }, { 20, 20, 20 } };
             int resultSum = 0;
             int rowNumber = 1;
-            int number = 1;
             int columNumber = 0;
             int resultMultiplication = mass[0,0];
-            
 
             Console.WriteLine("Дан следующий массив");
 
