@@ -6,12 +6,12 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            int[,] mass = { { 20, 20, 20, 20}, { 10, 10, 10, 10} };
+            int[,] mass = { { 20, 20, 20, 20 }, { 10, 10, 10, 10 }, { 2, 2, 2, 2 }, { 2, 2, 2, 2 } };
             int resultSum = 0;
-            int resultMultiplication = 0;
+            int resultMultiplication = 1;
             int rowNumber = 1;
             int columNumber = 0;
-            
+
             Console.WriteLine("Дан следующий массив");
 
             for (int i = 0; i < mass.GetLength(0); i++)
@@ -30,8 +30,7 @@ namespace TreningTimur
 
             for (int i = 0; i < mass.GetLength(0); i++)
             {
-                resultMultiplication = mass[i, columNumber];
-                resultMultiplication *= mass[++i, columNumber];
+                resultMultiplication *= mass[i, columNumber];
             }
 
             Console.WriteLine($"Сумма в торой строки = {resultSum}");
