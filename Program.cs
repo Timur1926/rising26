@@ -6,35 +6,51 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            int[,] mass = { { 20, 20, 20, 20 }, { 10, 10, 10, 10 }, { 2, 2, 2, 2 }, { 2, 2, 2, 2 } };
-            int resultSum = 0;
-            int resultMultiplication = 1;
-            int rowNumber = 1;
-            int columNumber = 0;
-
-            Console.WriteLine("Дан следующий массив");
+            Random random = new Random();
+            int numberMin = 1;
+            int numberMax = 50;
+            int largestElement = 0;
+            int changeLargestElement = 0;
+            int countLargestElement = 0;
+            int[,] mass = new int[10, 10];
 
             for (int i = 0; i < mass.GetLength(0); i++)
             {
                 for (int j = 0; j < mass.GetLength(1); j++)
                 {
-                    Console.Write(mass[i, j] + " ");
+                    mass[i, j] = random.Next(numberMin, numberMax);
+                    Console.Write(mass[i,j] + "\t");
+
+                    if (mass[i, j] > largestElement)
+                    {
+                        largestElement = mass[i, j];
+                    }
+
+                }
+                Console.WriteLine("");
+            }
+
+            Console.WriteLine("----------------------------");
+            Console.WriteLine(largestElement + " - максимальный элемент массива" + "\n");
+
+            for (int i = 0; i < mass.GetLength(0); i++)
+            {
+                for (int j = 0; j < mass.GetLength(1); j++)
+                {
+
+                    if (mass[i,j] == largestElement)
+                    {
+                        mass[i, j] = changeLargestElement;
+                        countLargestElement++;
+                    }
+
+                    Console.Write(mass[i,j] + "\t");
                 }
                 Console.WriteLine();
             }
 
-            for (int i = 0; i < mass.GetLength(1); i++)
-            {
-                resultSum += mass[rowNumber, i];
-            }
-
-            for (int i = 0; i < mass.GetLength(0); i++)
-            {
-                resultMultiplication *= mass[i, columNumber];
-            }
-
-            Console.WriteLine($"Сумма в торой строки = {resultSum}");
-            Console.WriteLine($"Произведение первого столбца = {resultMultiplication}");
-        }
+            Console.WriteLine("----------------------------");
+            Console.WriteLine($"Максимальный элемент {largestElement} - {countLargestElement} шт");
+        }   
     }
 }
