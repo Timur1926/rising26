@@ -19,7 +19,7 @@ namespace TreningTimur
                 for (int j = 0; j < mass.GetLength(1); j++)
                 {
                     mass[i, j] = random.Next(numberMin, numberMax);
-                    Console.Write(mass[i,j] + "\t");
+                    Console.Write(mass[i, j] + "\t");
 
                     if (mass[i, j] > largestElement)
                     {
@@ -27,7 +27,9 @@ namespace TreningTimur
                     }
 
                 }
-                Console.WriteLine("");
+
+                Console.WriteLine();
+
             }
 
             Console.WriteLine("----------------------------");
@@ -37,20 +39,22 @@ namespace TreningTimur
             {
                 for (int j = 0; j < mass.GetLength(1); j++)
                 {
+                    Console.Write(mass[i, j] + "\t");
 
-                    if (mass[i,j] == largestElement)
+                    if (mass[i, j] == largestElement)
                     {
                         mass[i, j] = changeLargestElement;
                         countLargestElement++;
                     }
-
-                    Console.Write(mass[i,j] + "\t");
+                    
                 }
+
                 Console.WriteLine();
+
             }
 
             Console.WriteLine("----------------------------");
             Console.WriteLine($"Максимальный элемент {largestElement} - {countLargestElement} шт");
-        }   
+        }
     }
 }
