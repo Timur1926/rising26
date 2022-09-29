@@ -6,55 +6,49 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
+
             Random random = new Random();
-            int numberMin = 1;
-            int numberMax = 50;
-            int largestElement = 0;
-            int changeLargestElement = 0;
-            int countLargestElement = 0;
-            int[,] mass = new int[10, 10];
+            int minRandom = 1;
+            int maxRandom = 50;
+            int number_1 = 1;
+            int number_0 = 0;
+            int number_28 = 28;
+            int[] mass = new int[30];
+            Console.WriteLine("Массив из 30 элементов");
 
-            for (int i = 0; i < mass.GetLength(0); i++)
+            for (int i = 0; i < mass.Length; i++)
             {
-                for (int j = 0; j < mass.GetLength(1); j++)
+                mass[i] = random.Next(minRandom, maxRandom);
+                Console.Write(mass[i] + "  ");
+            }
+
+            Console.WriteLine();
+            int localNumber;
+
+            for (int i = 0; i < mass.Length - 1; i++)
+            {
+
+                if (i == number_0 && mass[i] > mass[i + number_1])
                 {
-                    mass[i, j] = random.Next(numberMin, numberMax);
-                    Console.Write(mass[i, j] + "\t");
-
-                    if (mass[i, j] > largestElement)
-                    {
-                        largestElement = mass[i, j];
-                    }
-
+                    localNumber = mass[i];
+                    Console.Write(localNumber + "  ");
                 }
 
-                Console.WriteLine();
+                if (i > number_0 && mass[i - number_1] < mass[i] && mass[i] > mass[i + number_1])
+                {
+                    localNumber = mass[i];
+                    Console.Write(localNumber + "  ");
+                }
+
+                if (i == number_28 && mass[i] < mass[i + number_1])
+                {
+                    localNumber = mass[i + 1];
+                    Console.Write(localNumber + "  ");
+                }
 
             }
 
-            Console.WriteLine("----------------------------");
-            Console.WriteLine(largestElement + " - максимальный элемент массива" + "\n");
-
-            for (int i = 0; i < mass.GetLength(0); i++)
-            {
-                for (int j = 0; j < mass.GetLength(1); j++)
-                {
-                    Console.Write(mass[i, j] + "\t");
-
-                    if (mass[i, j] == largestElement)
-                    {
-                        mass[i, j] = changeLargestElement;
-                        countLargestElement++;
-                    }
-                    
-                }
-
-                Console.WriteLine();
-
-            }
-
-            Console.WriteLine("----------------------------");
-            Console.WriteLine($"Максимальный элемент {largestElement} - {countLargestElement} шт");
+            Console.WriteLine();
         }
     }
 }
