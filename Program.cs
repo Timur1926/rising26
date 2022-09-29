@@ -6,7 +6,6 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-
             Random random = new Random();
             int minRandom = 1;
             int maxRandom = 50;
