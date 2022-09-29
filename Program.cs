@@ -10,10 +10,10 @@ namespace TreningTimur
             Random random = new Random();
             int minRandom = 1;
             int maxRandom = 50;
-            int number_1 = 1;
-            int number_0 = 0;
-            int number_28 = 28;
-            int[] mass = new int[30];
+            int firstElement = 0;
+            int secondElement = 1;
+            int arrayElements = 30;
+            int[] mass = new int[arrayElements];
             Console.WriteLine("Массив из 30 элементов");
 
             for (int i = 0; i < mass.Length; i++)
@@ -24,28 +24,28 @@ namespace TreningTimur
 
             Console.WriteLine();
             int localNumber;
+            int penultimateElement = mass.Length - secondElement - secondElement;
+            int lastElementArray = mass.Length - secondElement;
 
-            for (int i = 0; i < mass.Length - 1; i++)
+            if (mass[firstElement] > mass[secondElement])
             {
+                localNumber = mass[firstElement];
+                Console.Write(localNumber + " ");
+            }
 
-                if (i == number_0 && mass[i] > mass[i + number_1])
+            for (int i = 1; i < mass.Length - secondElement; i++)
+            {
+                if (i > firstElement && mass[i - secondElement] < mass[i] && mass[i] > mass[i + secondElement])
                 {
                     localNumber = mass[i];
                     Console.Write(localNumber + "  ");
                 }
+            }
 
-                if (i > number_0 && mass[i - number_1] < mass[i] && mass[i] > mass[i + number_1])
-                {
-                    localNumber = mass[i];
-                    Console.Write(localNumber + "  ");
-                }
-
-                if (i == number_28 && mass[i] < mass[i + number_1])
-                {
-                    localNumber = mass[i + 1];
-                    Console.Write(localNumber + "  ");
-                }
-
+            if (mass[penultimateElement] < mass[lastElementArray])
+            {
+                localNumber = mass[lastElementArray];
+                Console.Write(localNumber + "  ");
             }
 
             Console.WriteLine();
