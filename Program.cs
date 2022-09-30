@@ -13,7 +13,7 @@ namespace TreningTimur
             int secondElement = 1;
             int arrayElements = 30;
             int[] mass = new int[arrayElements];
-            Console.WriteLine("Массив из 30 элементов");
+            Console.WriteLine($"Массив из {arrayElements} элементов");
 
             for (int i = 0; i < mass.Length; i++)
             {
@@ -34,7 +34,7 @@ namespace TreningTimur
 
             for (int i = 1; i < mass.Length - secondElement; i++)
             {
-                if (i > firstElement && mass[i - secondElement] < mass[i] && mass[i] > mass[i + secondElement])
+                if (mass[i - secondElement] < mass[i] && mass[i] > mass[i + secondElement])
                 {
                     localNumber = mass[i];
                     Console.Write(localNumber + "  ");
