@@ -37,7 +37,7 @@ namespace TreningTimur
                     iteration++;
                 }
             }
-            
+
         }
     }
 }
