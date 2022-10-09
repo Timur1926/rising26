@@ -6,48 +6,38 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            Random random = new Random();
-            int minRandom = 1;
-            int maxRandom = 50;
-            int firstElement = 0;
-            int secondElement = 1;
-            int arrayElements = 30;
-            int[] mass = new int[arrayElements];
-            Console.WriteLine($"Массив из {arrayElements} элементов");
+            string[] mass = { };
+            string action = "";
+            string exit = "exit";
+            string sum = "sum";
+            int number = 0;
+            int iteration = 0;
+            int countElement = 1;
 
-            for (int i = 0; i < mass.Length; i++)
+            while (action != "exit")
             {
-                mass[i] = random.Next(minRandom, maxRandom);
-                Console.Write(mass[i] + "  ");
-            }
+                action = Console.ReadLine();
+                string[] array = new string[mass.Length + countElement];
+                array[array.Length - countElement] = action;
+                mass = array;
 
-            Console.WriteLine();
-            int localNumber;
-            int penultimateElement = mass.Length - secondElement - secondElement;
-            int lastElementArray = mass.Length - secondElement;
-
-            if (mass[firstElement] > mass[secondElement])
-            {
-                localNumber = mass[firstElement];
-                Console.Write(localNumber + " ");
-            }
-
-            for (int i = 1; i < mass.Length - secondElement; i++)
-            {
-                if (mass[i - secondElement] < mass[i] && mass[i] > mass[i + secondElement])
+                if (action == exit)
                 {
-                    localNumber = mass[i];
-                    Console.Write(localNumber + "  ");
+                    Console.WriteLine("Программа завершина!!!");
+                }
+                else if (action != "sum")
+                {
+                    number += Convert.ToInt32(mass[iteration]);
+                    iteration++;
+                }
+                else if (action == sum)
+                {
+                    Console.WriteLine("Результат сложения = " + number);
+                    number = 0;
+                    iteration++;
                 }
             }
-
-            if (mass[penultimateElement] < mass[lastElementArray])
-            {
-                localNumber = mass[lastElementArray];
-                Console.Write(localNumber + "  ");
-            }
-
-            Console.WriteLine();
+            
         }
     }
 }
