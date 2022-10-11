@@ -6,33 +6,38 @@ namespace TreningTimur
     {
         static void Main(string[] args)
         {
-            int[] mass = { };
+            int[] array = { };
+            bool exit = true;
             string action = null;
-            int countElements = 1;
-            int number = 0;
             int result = 0;
+            int number = 0;
+            int countElements = 1;
 
-            while(action != "exit")
+            while (exit)
             {
-                int[] array = new int[mass.Length + countElements];
-                mass = array;
                 action = Console.ReadLine();
 
-                if (action == "exit") 
-                { }
-                else if (action != "sum")
+                if (action == "exit")
                 {
-                    mass[number] = Convert.ToInt32(action);
-                    result += mass[number];
+                    exit = false;
+                    Console.WriteLine("Программа завершена!!!");
+                    action = null;
                 }
-                else if (action == "sum")
+                if (action == "sum")
                 {
-                    Console.WriteLine($"Результат сложения = {result}");
+                    Console.WriteLine($"Сумма чисел = {result}");
+                    number = 0;
                     result = 0;
+                    action = null;
                 }
+
+                int[] dynamicArray = new int[array.Length + countElements];
+                array = dynamicArray;
+                array[number] += Convert.ToInt32(action);
+                result += array[number];
+                number++;
             }
 
-            Console.WriteLine("Программа заверена!!!");
         }
     }
 }
