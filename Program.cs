@@ -7,27 +7,28 @@ namespace TreningTimur
         static void Main(string[] args)
         {
             int[] array = { };
-            bool exit = true;
-            string action = null;
+            bool goOut = true;
+            string exit = "exit";
+            string sum = "sum";
+            string action;
             int result = 0;
             int number = 0;
             int countElements = 1;
 
-            while (exit)
+            while (goOut)
             {
                 action = Console.ReadLine();
 
-                if (action == "exit")
+                if (action == exit)
                 {
-                    exit = false;
+                    goOut = false;
                     Console.WriteLine("Программа завершена!!!");
                     action = null;
                 }
-                if (action == "sum")
+                else if (action == sum)
                 {
                     Console.WriteLine($"Сумма чисел = {result}");
                     number = 0;
-                    result = 0;
                     action = null;
                 }
 
@@ -35,7 +36,6 @@ namespace TreningTimur
                 array = dynamicArray;
                 array[number] += Convert.ToInt32(action);
                 result += array[number];
-                number++;
             }
 
         }
