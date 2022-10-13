@@ -7,27 +7,33 @@ namespace TreningTimur
         static void Main(string[] args)
         {
             int[] array = { };
-            bool isExit = true;
+            bool isProceed = true;
             string exit = "exit";
             string sum = "sum";
             string action;
             int result = 0;
 
-            while (isExit)
+            Console.WriteLine($"Вводим любые целые числа и нажимаем enter");
+            Console.WriteLine($"Команда (sum) и нажатие enter даёт сумму рание введённых чисел");
+            Console.WriteLine($"Команда (exit) и нажатие enter завершит программу");
+
+            while (isProceed)
             {
                 action = Console.ReadLine();
 
                 if (action == exit)
                 {
-                    isExit = false;
+                    isProceed = false;
                     Console.WriteLine("Программа завершена!!!");
                 }
                 else if (action == sum)
                 {
+
                     for (int i = 0; i < array.Length; i++)
                     {
                         result += array[i];
                     }
+
                     Console.WriteLine($"Сумма чисел = {result}");
                     result = 0;
                 }
