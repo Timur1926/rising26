@@ -7,33 +7,41 @@ namespace TreningTimur
         static void Main(string[] args)
         {
             int[] array = { };
-            bool goOut = true;
+            bool isExit = true;
             string exit = "exit";
             string sum = "sum";
             string action;
             int result = 0;
-            int number = 0;
-            int countElements = 1;
 
-            while (goOut)
+            while (isExit)
             {
                 action = Console.ReadLine();
 
                 if (action == exit)
                 {
-                    goOut = false;
+                    isExit = false;
                     Console.WriteLine("Программа завершена!!!");
                 }
                 else if (action == sum)
                 {
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        result += array[i];
+                    }
                     Console.WriteLine($"Сумма чисел = {result}");
+                    result = 0;
                 }
-                else
+                else 
                 {
-                    int[] dynamicArray = new int[array.Length + countElements];
+                    int[] dynamicArray = new int[array.Length + 1];
+
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        dynamicArray[i] = array[i];
+                    }
+
+                    dynamicArray[dynamicArray.Length - 1] = Convert.ToInt32(action);
                     array = dynamicArray;
-                    array[number] += Convert.ToInt32(action);
-                    result += array[number];
                 }
             }
 
