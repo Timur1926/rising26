@@ -14,8 +14,8 @@ namespace TreningTimur
             int result = 0;
 
             Console.WriteLine($"Вводим любые целые числа и нажимаем enter");
-            Console.WriteLine($"Команда (sum) и нажатие enter даёт сумму рание введённых чисел");
-            Console.WriteLine($"Команда (exit) и нажатие enter завершит программу");
+            Console.WriteLine($"Команда ({sum}) и нажатие enter даёт сумму рание введённых чисел");
+            Console.WriteLine($"Команда ({exit}) и нажатие enter завершит программу");
 
             while (isProceed)
             {
