@@ -43,10 +43,6 @@ namespace ЯJunior
             Console.WriteLine("Повторяющееся число " + repeatingNumber);
             Console.WriteLine("----------------------");
             Console.WriteLine("Количество повторений " + numberRepetitions);
-            Console.WriteLine();
-
-
-
         }
     }
 }
