@@ -1,55 +1,51 @@
 ﻿using System;
 
-namespace TreningTimur
+namespace ЯJunior
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int[] array = { };
-            bool isProceed = true;
-            string exit = "exit";
-            string sum = "sum";
-            string action;
-            int result = 0;
+            int countElements = 30;
+            int[] array = new int[countElements];
+            int number = 1;
+            int numberRepetitions = 0;
+            int repeatingNumber = 0;
+            int elementI = 1;
+            int randomMin = 1;
+            int randoMax = 4;
+            Random random = new Random();
 
-            Console.WriteLine($"Вводим любые целые числа и нажимаем enter");
-            Console.WriteLine($"Команда ({sum}) и нажатие enter даёт сумму рание введённых чисел");
-            Console.WriteLine($"Команда ({exit}) и нажатие enter завершит программу");
-
-            while (isProceed)
+            for (int i = 0; i < array.Length; i++)
             {
-                action = Console.ReadLine();
+                array[i] = random.Next(randomMin, randoMax);
+                Console.Write(array[i] + "  ");
 
-                if (action == exit)
+                if (i > 0)
                 {
-                    isProceed = false;
-                    Console.WriteLine("Программа завершена!!!");
-                }
-                else if (action == sum)
-                {
-
-                    for (int i = 0; i < array.Length; i++)
+                    if (array[i] == array[i - elementI])
                     {
-                        result += array[i];
+                        number += 1;
                     }
-
-                    Console.WriteLine($"Сумма чисел = {result}");
-                    result = 0;
-                }
-                else 
-                {
-                    int[] dynamicArray = new int[array.Length + 1];
-
-                    for (int i = 0; i < array.Length; i++)
+                    else if (array[i] != array[i - elementI])
                     {
-                        dynamicArray[i] = array[i];
+                        if (numberRepetitions < number)
+                        {
+                            repeatingNumber = array[i - elementI];
+                            numberRepetitions = number;
+                        }
+                        number = 1;
                     }
-
-                    dynamicArray[dynamicArray.Length - 1] = Convert.ToInt32(action);
-                    array = dynamicArray;
                 }
             }
+
+            Console.WriteLine("\n");
+            Console.WriteLine("Повторяющееся число " + repeatingNumber);
+            Console.WriteLine("----------------------");
+            Console.WriteLine("Количество повторений " + numberRepetitions);
+            Console.WriteLine();
+
+
 
         }
     }
