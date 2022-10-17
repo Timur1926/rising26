@@ -26,7 +26,6 @@ namespace ЯJunior
                     if (array[i] == array[i - elementI])
                     {
                         number += 1;
-
                     }
                     else
                     {
