@@ -26,15 +26,16 @@ namespace ЯJunior
                     if (array[i] == array[i - elementI])
                     {
                         number += 1;
+
                     }
-                    else if (array[i] != array[i - elementI])
+                    else
                     {
-                        if (numberRepetitions < number)
-                        {
-                            repeatingNumber = array[i - elementI];
-                            numberRepetitions = number;
-                        }
                         number = 1;
+                    }
+                    if (numberRepetitions <= number)
+                    {
+                        repeatingNumber = array[i - elementI];
+                        numberRepetitions = number;
                     }
                 }
             }
