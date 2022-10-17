@@ -22,24 +22,21 @@ namespace ЯJunior
                 Console.Write(array[i] + "  ");
             }
 
-            for(int i = 0; i < array.Length; i++)
+            for (int i = 1; i < array.Length; i++)
             {
 
-                if (i > 0)
+                if (array[i] == array[i - elementI])
                 {
-                    if (array[i] == array[i - elementI])
-                    {
-                        number += 1;
-                    }
-                    else
-                    {
-                        number = 1;
-                    }
-                    if (numberRepetitions <= number)
-                    {
-                        repeatingNumber = array[i - elementI];
-                        numberRepetitions = number;
-                    }
+                    number += 1;
+                }
+                else
+                {
+                    number = 1;
+                }
+                if (numberRepetitions <= number)
+                {
+                    repeatingNumber = array[i - elementI];
+                    numberRepetitions = number;
                 }
             }
 
