@@ -11,7 +11,7 @@ namespace ЯJunior
             int number = 1;
             int numberRepetitions = 0;
             int repeatingNumber = 0;
-            int elementI = 1;
+            int elementPosition = 1;
             int randomMin = 1;
             int randoMax = 4;
             Random random = new Random();
@@ -24,8 +24,7 @@ namespace ЯJunior
 
             for (int i = 1; i < array.Length; i++)
             {
-
-                if (array[i] == array[i - elementI])
+                if (array[i] == array[i - elementPosition])
                 {
                     number += 1;
                 }
@@ -33,9 +32,10 @@ namespace ЯJunior
                 {
                     number = 1;
                 }
+
                 if (numberRepetitions <= number)
                 {
-                    repeatingNumber = array[i - elementI];
+                    repeatingNumber = array[i - elementPosition];
                     numberRepetitions = number;
                 }
             }
