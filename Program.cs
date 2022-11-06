@@ -19,6 +19,7 @@ namespace Кадровый_учёт
             array = tempArrayFIO;
             return array;
         }
+
         static string[] AddPost(string[]array)
         {
             string[] tempArrayPost = new string[array.Length + 1];
@@ -34,6 +35,7 @@ namespace Кадровый_учёт
             array = tempArrayPost;
             return array;
         }
+
         static void DisplayDossier(string[]array1, string[]array2)
         {
             Console.WriteLine("\tДосье всех сотрудников");
@@ -46,6 +48,7 @@ namespace Кадровый_учёт
             }
 
         }
+
         static string[] RemoveFio(string[]array, int number)
         {
             string[] tempFio = new string[array.Length - 1];
@@ -59,6 +62,7 @@ namespace Кадровый_учёт
             array = tempFio;
             return array;
         }
+
         static string[] RemovePost(string[]array, int number)
         {
             string[] tempPost = new string [array.Length - 1];
@@ -90,6 +94,7 @@ namespace Кадровый_учёт
 
             return dosierNameLast;
         }
+
         static void Main(string[] args)
         {
             Console.WriteLine("\tМЕНЮ");
