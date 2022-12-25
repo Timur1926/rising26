@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Text.RegularExpressions;
 
 namespace Кадровый_учёт
 {
@@ -8,13 +8,13 @@ namespace Кадровый_учёт
         static void Main(string[] args)
         {
             const int AddDossier = 1;
-            const int AllDossiers = 2;
-            const int RemoveDossiers = 3;
+            const int AllDossier = 2;
+            const int RemoveDossier = 3;
             const int SearchLastName = 4;
             const int Exit = 5;
             Console.WriteLine("\tМЕНЮ");
-            Console.WriteLine($"Добавить досье - кнопка {AddDossier};\nВывести всё досье - кнопака {AllDossiers};\n" +
-                              $"Удалить досье - кнопка {RemoveDossiers};\nПоиск по фамилии - кнопка {SearchLastName};\nВыход - кнопка {Exit}");
+            Console.WriteLine($"Добавить досье - кнопка {AddDossier};\nВывести всё досье - кнопака {AllDossier};\n" +
+                              $"Удалить досье - кнопка {RemoveDossier};\nПоиск по фамилии - кнопка {SearchLastName};\nВыход - кнопка {Exit}");
             bool continuation = true;
             string[] fioArray = new string[0];
             string[] postArray = new string[0];
@@ -28,114 +28,111 @@ namespace Кадровый_учёт
                 switch (numberMуnu)
                 {
                     case AddDossier:
-                        //Добавить досье
-                        AddFioPost(ref fioArray, ref postArray);
+                        Console.Write("Введите ФИО: ");
+                        fioArray = AddDossiers(fioArray);
+                        Console.Write("Введите должность: ");
+                        postArray = AddDossiers(postArray);
                         break;
-                    case AllDossiers:
-                        //Вывести всё досье
-                        DisplayDossier(ref fioArray, ref postArray);
+                    case AllDossier:
+                        DisplayDossier(fioArray, postArray);
                         break;
-                    case RemoveDossiers:
-                        //Удалить досье
-                        RemoveDossier(ref fioArray, ref postArray);
+                    case RemoveDossier:
+                        Console.Write("Номер досье для удоления: ");
+                        int number = Convert.ToInt32(Console.ReadLine());
+                        fioArray = RemoveDossiers(fioArray, number);
+                        postArray = RemoveDossiers(postArray, number);
                         break;
                     case SearchLastName:
-                        //Поиск по фамилии
-                        //LastNameSearch(ref fioArray, ref postArray);
+                        int index = Searche(fioArray);
+                        Console.WriteLine(fioArray[index] + " - " + postArray[index]);
                         break;
                     case Exit:
-                        //Выход
                         continuation = false;
                         Console.WriteLine("Программа завершена !!!");
                         break;
-                    default:
-                        Console.WriteLine("ERROR!!! Такой пункт меню остутствует!!!");
+                    default :
+                        Console.WriteLine("ERROR!!! Такого пункта в меню нет !!! Попробуй ещё !!!");
                         break;
                 }
             }
 
         }
 
-        static void AddFioPost(ref string[] array1, ref string[] array2)
+        static string[] AddDossiers(string[] array)
         {
-            string[] tempFioArray = new string[array1.Length + 1];
-            string[] tempPostArray = new string[array2.Length + 1];
+            string[] tempArray = new string[array.Length + 1];
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                tempArray[i] = array[i];
+            }
+
+            tempArray[tempArray.Length - 1] = Console.ReadLine();
+            array = tempArray;
+            return array;
+        }
+
+        static void DisplayDossier(string[] array1, string[] array2)
+        {
+            int rowsNumber = 1;
 
             for (int i = 0; i < array1.Length; i++)
             {
-                tempFioArray[i] = array1[i];
-                tempPostArray[i] = array2[i];
+                Console.WriteLine(rowsNumber + ") " + array1[i] + " - " + array2[i]);
+                rowsNumber++;
             }
 
-            Console.Write("Enter last name: "); 
-            string lastName = Console.ReadLine();
-            Console.Write("Enter first name: ");
-            string firstName = Console.ReadLine();
-            Console.Write("Enter midle name: ");
-            string midleName = Console.ReadLine();
-            Console.Write("Enter post: ");
-            string post = Console.ReadLine();
-            tempFioArray[tempFioArray.Length - 1] = lastName+" "+firstName+" "+ midleName;
-            tempPostArray[tempPostArray.Length - 1] = post;
-            array1 = tempFioArray;
-            array2 = tempPostArray;
-            
         }
-        
-        static void DisplayDossier(ref string[]array1,ref string[]array2)
+
+        static string[] RemoveDossiers(string[] array, int index)
         {
-            Console.WriteLine("\tДосье всех сотрудников");
-            int number = 1;
+            string[] tempArray = array;
+            array = new string[array.Length - 1];
+            index -= 1;
+            int numberIteration = 0;
 
-            for(int i = 0; i < array1.Length; i++)
-            {
-                Console.WriteLine($"{number}) {array1[i]} - {array2[i]}");
-                number++;
-            }
-
-            Console.WriteLine();
-        }
-        
-        static void RemoveDossier(ref string[]array1, ref string[]array2)
-        {
-            Console.Write("Введите номер досье которое нужно удалить: ");
-            int numberDossierDelet  = Convert.ToInt32(Console.ReadLine());
-            numberDossierDelet -= 1;
-            int number = 0;
-            string[] tempFioArray = new string[array1.Length - 1];
-            string[] tempPostArray = new string[array2.Length - 1];
-
-            for (int i = 0; i < tempFioArray.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
 
-                if (i == numberDossierDelet) 
+                if (index == array.Length)
                 {
-                    number++;
-                    tempFioArray[i] = array1[number];
-                    tempPostArray[i] = array2[number];
+                    array[numberIteration] = tempArray[i];
+                    numberIteration++;
                 }
-                else if (numberDossierDelet == tempFioArray.Length)
+                else if (index == i)
                 {
-                    tempFioArray[i] = array1[number];
-                    tempPostArray[i] = array2[number];
-                    number++;
+                    array[numberIteration] = tempArray[i + 1];
+                    numberIteration++;
                 }
                 else
                 {
-                    number++;
-                    tempFioArray[i] = array1[number];
-                    tempPostArray[i] = array2[number];
-                }  
-
+                    array[numberIteration] = tempArray[i];
+                    numberIteration++;
+                }
             }
 
-            array1 = tempFioArray;
-            array2 = tempPostArray;
+            return array;
         }
 
-        static void LastNameSearch(ref string[]Array1, ref string[]Array2)
+        static int Searche(string[] array)
         {
-            
+            Console.Write("Введите фамилию для поиска досье: ");
+            string lastName = Console.ReadLine();
+            string[] dossier;
+            int index = 0;
+            int j = 0;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                dossier = array[i].Split();
+
+                if (dossier[j] == lastName)
+                {
+                    index = i;
+                }
+            }
+
+            return index;
         }
     }
 }
