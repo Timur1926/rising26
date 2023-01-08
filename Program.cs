@@ -7,69 +7,69 @@ namespace Кадровый_учёт
     {
         static void Main(string[] args)
         {
-            const int AddDossier = 1;
-            const int AllDossier = 2;
-            const int RemoveDossier = 3;
-            const int SearchLastName = 4;
-            const int Exit = 5;
-            Console.WriteLine("\tМЕНЮ");
-            Console.WriteLine($"Добавить досье - кнопка {AddDossier};\nВывести всё досье - кнопака {AllDossier};\n" +
-                              $"Удалить досье - кнопка {RemoveDossier};\nПоиск по фамилии - кнопка {SearchLastName};\nВыход - кнопка {Exit}");
-            bool continuation = true;
-            string[] fioArray = new string[0];
-            string[] postArray = new string[0];
+            const int AddDossierComand = 1;
+            const int AllDossierComand = 2;
+            const int RemoveDossierComand = 3;
+            const int SearchLastNameComand = 4;
+            const int ExitComand = 5;
 
-            while (continuation)
+            bool IsContinuation = true;
+            string[] fullNameArrays = new string[0];
+            string[] postArrays = new string[0];
+            Console.WriteLine("\tМЕНЮ");
+            Console.WriteLine($"Добавить досье - кнопка {AddDossierComand};\nВывести всё досье - кнопака {AllDossierComand};\n" +
+                              $"Удалить досье - кнопка {RemoveDossierComand};\nПоиск по фамилии - кнопка {SearchLastNameComand};\nВыход - кнопка {ExitComand}");
+
+            while (IsContinuation)
             {
                 Console.WriteLine("\t***");
                 Console.Write("Выбери номер действие из меню: ");
                 int numberMуnu = Convert.ToInt32(Console.ReadLine());
 
-                switch (numberMуnu)
+                if (AddDossierComand == numberMуnu)
                 {
-                    case AddDossier:
-                        Console.Write("Введите ФИО: ");
-                        fioArray = AddDossiers(fioArray);
-                        Console.Write("Введите должность: ");
-                        postArray = AddDossiers(postArray);
-                        break;
-                    case AllDossier:
-                        DisplayDossier(fioArray, postArray);
-                        break;
-                    case RemoveDossier:
-                        Console.Write("Номер досье для удоления: ");
-                        int number = Convert.ToInt32(Console.ReadLine());
-                        fioArray = RemoveDossiers(fioArray, number);
-                        postArray = RemoveDossiers(postArray, number);
-                        break;
-                    case SearchLastName:
-                        int index = Searche(fioArray);
-                        Console.WriteLine(fioArray[index] + " - " + postArray[index]);
-                        break;
-                    case Exit:
-                        continuation = false;
-                        Console.WriteLine("Программа завершена !!!");
-                        break;
-                    default :
-                        Console.WriteLine("ERROR!!! Такого пункта в меню нет !!! Попробуй ещё !!!");
-                        break;
+                    Console.Write("Введите ФИО: ");
+                    fullNameArrays = AddDossiers(fullNameArrays);
+                    Console.Write("Введите должность: ");
+                    postArrays = AddDossiers(postArrays);
                 }
+                else if(AllDossierComand == numberMуnu)
+                {
+                    DisplayDossier(fullNameArrays, postArrays);
+                }
+                else if (RemoveDossierComand == numberMуnu)
+                {
+                    Console.Write("Номер досье для удоления: ");
+                    int number = Convert.ToInt32(Console.ReadLine());
+                    fullNameArrays = RemoveDossiers(fullNameArrays, number);
+                    postArrays = RemoveDossiers(postArrays, number);
+                }
+                else if (SearchLastNameComand == numberMуnu)
+                {
+                    int index = Searche(fullNameArrays);
+                    Console.WriteLine(fullNameArrays[index] + " - " + postArrays[index]);
+                }
+                else if (ExitComand == numberMуnu)
+                {
+                    IsContinuation = false;
+                    Console.WriteLine("Программа завершена !!!");
+                } 
             }
 
         }
 
-        static string[] AddDossiers(string[] array)
+        static string[] AddDossiers(string[] array1)
         {
-            string[] tempArray = new string[array.Length + 1];
+            string[] fullNameArrays = new string[array1.Length + 1];
 
-            for (int i = 0; i < array.Length; i++)
+            for (int i = 0; i < array1.Length; i++)
             {
-                tempArray[i] = array[i];
+                fullNameArrays[i] = array1[i];
             }
-
-            tempArray[tempArray.Length - 1] = Console.ReadLine();
-            array = tempArray;
-            return array;
+           
+            fullNameArrays[fullNameArrays.Length - 1] = Console.ReadLine();
+            array1 = fullNameArrays;
+            return array1;
         }
 
         static void DisplayDossier(string[] array1, string[] array2)
@@ -78,7 +78,7 @@ namespace Кадровый_учёт
 
             for (int i = 0; i < array1.Length; i++)
             {
-                Console.WriteLine(rowsNumber + ") " + array1[i] + " - " + array2[i]);
+                Console.WriteLine($"{ i + 1}) {array1[i]} - {array2[i]}");
                 rowsNumber++;
             }
 
@@ -94,20 +94,20 @@ namespace Кадровый_учёт
             for (int i = 0; i < array.Length; i++)
             {
 
-                if (index == array.Length)
+                if (index == i)
                 {
-                    array[numberIteration] = tempArray[i];
                     numberIteration++;
+                    array[i] = tempArray[numberIteration];
                 }
-                else if (index == i)
+                else if (index > i)
                 {
-                    array[numberIteration] = tempArray[i + 1];
+                    array[i] = tempArray[numberIteration];
                     numberIteration++;
                 }
                 else
                 {
-                    array[numberIteration] = tempArray[i];
                     numberIteration++;
+                    array[i] = tempArray[numberIteration];
                 }
             }
 
@@ -129,6 +129,7 @@ namespace Кадровый_учёт
                 if (dossier[j] == lastName)
                 {
                     index = i;
+                    j++;
                 }
             }
 
