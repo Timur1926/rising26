@@ -7,68 +7,70 @@ namespace Кадровый_учёт
     {
         static void Main(string[] args)
         {
-            const int AddDossierComand = 1;
-            const int AllDossierComand = 2;
-            const int RemoveDossierComand = 3;
-            const int SearchLastNameComand = 4;
-            const int ExitComand = 5;
+            const string AddDossierCommand = "1";
+            const string AllDossierCommand = "2";
+            const string RemoveDossierCommand = "3";
+            const string SearchLastNameCommand = "4";
+            const string ExitCommand = "5";
 
-            bool IsContinuation = true;
-            string[] fullNameArrays = new string[0];
-            string[] postArrays = new string[0];
+            bool IsContinue = true;
+            string[] fullName = new string[0];
+            string[] position = new string[0];
+
             Console.WriteLine("\tМЕНЮ");
-            Console.WriteLine($"Добавить досье - кнопка {AddDossierComand};\nВывести всё досье - кнопака {AllDossierComand};\n" +
-                              $"Удалить досье - кнопка {RemoveDossierComand};\nПоиск по фамилии - кнопка {SearchLastNameComand};\nВыход - кнопка {ExitComand}");
+            Console.WriteLine($"Добавить досье - кнопка {AddDossierCommand};\nВывести всё досье - кнопака {AllDossierCommand};\n" +
+                              $"Удалить досье - кнопка {RemoveDossierCommand};\nПоиск по фамилии - кнопка {SearchLastNameCommand};\nВыход - кнопка {ExitCommand}");
 
-            while (IsContinuation)
+            while (IsContinue)
             {
                 Console.WriteLine("\t***");
                 Console.Write("Выбери номер действие из меню: ");
-                int numberMуnu = Convert.ToInt32(Console.ReadLine());
+                string userInput = Console.ReadLine();
 
-                if (AddDossierComand == numberMуnu)
+                if (AddDossierCommand == userInput)
                 {
                     Console.Write("Введите ФИО: ");
-                    fullNameArrays = AddDossiers(fullNameArrays);
+                    fullName = AddDossiers(fullName);
                     Console.Write("Введите должность: ");
-                    postArrays = AddDossiers(postArrays);
+                    position = AddDossiers(position);
                 }
-                else if(AllDossierComand == numberMуnu)
+                else if(AllDossierCommand == userInput)
                 {
-                    DisplayDossier(fullNameArrays, postArrays);
+                    DisplayDossier(fullName, position);
                 }
-                else if (RemoveDossierComand == numberMуnu)
+                else if (RemoveDossierCommand == userInput)
                 {
                     Console.Write("Номер досье для удоления: ");
                     int number = Convert.ToInt32(Console.ReadLine());
-                    fullNameArrays = RemoveDossiers(fullNameArrays, number);
-                    postArrays = RemoveDossiers(postArrays, number);
+                    fullName = RemoveDossiers(fullName, number);
+                    position = RemoveDossiers(position, number);
                 }
-                else if (SearchLastNameComand == numberMуnu)
+                else if (SearchLastNameCommand == userInput)
                 {
-                    int index = Searche(fullNameArrays);
-                    Console.WriteLine(fullNameArrays[index] + " - " + postArrays[index]);
+                    int index = Search(fullName);
+                    Console.WriteLine(fullName[index] + " - " + position[index]);
                 }
-                else if (ExitComand == numberMуnu)
+                else if (ExitCommand == userInput)
                 {
-                    IsContinuation = false;
-                    Console.WriteLine("Программа завершена !!!");
+                    IsContinue = false;
                 } 
+                
             }
 
+            Console.WriteLine("Программа завершена !!!");
         }
 
         static string[] AddDossiers(string[] array1)
         {
-            string[] fullNameArrays = new string[array1.Length + 1];
+            string[] fullNames = new string[array1.Length + 1];
 
             for (int i = 0; i < array1.Length; i++)
             {
-                fullNameArrays[i] = array1[i];
+                fullNames[i] = array1[i];
             }
            
-            fullNameArrays[fullNameArrays.Length - 1] = Console.ReadLine();
-            array1 = fullNameArrays;
+            fullNames[fullNames.Length - 1] = Console.ReadLine();
+            array1 = fullNames;
             return array1;
         }
 
@@ -114,22 +116,22 @@ namespace Кадровый_учёт
             return array;
         }
 
-        static int Searche(string[] array)
+        static int Search(string[] array)
         {
             Console.Write("Введите фамилию для поиска досье: ");
             string lastName = Console.ReadLine();
             string[] dossier;
             int index = 0;
-            int j = 0;
+            int dossierNumber = 0;
 
             for (int i = 0; i < array.Length; i++)
             {
                 dossier = array[i].Split();
 
-                if (dossier[j] == lastName)
+                if (dossier[dossierNumber] == lastName)
                 {
                     index = i;
-                    j++;
+                    dossierNumber++;
                 }
             }
 
