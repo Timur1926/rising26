@@ -13,7 +13,7 @@ namespace Кадровый_учёт
             const string SearchLastNameCommand = "4";
             const string ExitCommand = "5";
 
-            bool IsContinue = true;
+            bool isContinue = true;
             string[] fullName = new string[0];
             string[] position = new string[0];
 
@@ -21,7 +21,7 @@ namespace Кадровый_учёт
             Console.WriteLine($"Добавить досье - кнопка {AddDossierCommand};\nВывести всё досье - кнопака {AllDossierCommand};\n" +
                               $"Удалить досье - кнопка {RemoveDossierCommand};\nПоиск по фамилии - кнопка {SearchLastNameCommand};\nВыход - кнопка {ExitCommand}");
 
-            while (IsContinue)
+            while (isContinue)
             {
                 Console.WriteLine("\t***");
                 Console.Write("Выбери номер действие из меню: ");
@@ -42,8 +42,8 @@ namespace Кадровый_учёт
                 {
                     Console.Write("Номер досье для удоления: ");
                     int number = Convert.ToInt32(Console.ReadLine());
-                    fullName = RemoveDossiers(fullName, number);
-                    position = RemoveDossiers(position, number);
+                    fullName = RemoveInformation(fullName, number);
+                    position = RemoveInformation(position, number);
                 }
                 else if (SearchLastNameCommand == userInput)
                 {
@@ -52,7 +52,7 @@ namespace Кадровый_учёт
                 }
                 else if (ExitCommand == userInput)
                 {
-                    IsContinue = false;
+                    isContinue = false;
                 } 
                 
             }
@@ -60,60 +60,55 @@ namespace Кадровый_учёт
             Console.WriteLine("Программа завершена !!!");
         }
 
-        static string[] AddDossiers(string[] array1)
+        static string[] AddDossiers(string[] tempArray)
         {
-            string[] fullNames = new string[array1.Length + 1];
+            string[] data = new string[tempArray.Length + 1];
 
-            for (int i = 0; i < array1.Length; i++)
+            for (int i = 0; i < tempArray.Length; i++)
             {
-                fullNames[i] = array1[i];
+                data[i] = tempArray[i];
             }
            
-            fullNames[fullNames.Length - 1] = Console.ReadLine();
-            array1 = fullNames;
-            return array1;
+            data[data.Length - 1] = Console.ReadLine();
+            tempArray = data;
+            return tempArray;
         }
 
-        static void DisplayDossier(string[] array1, string[] array2)
+        static void DisplayDossier(string[] fullName, string[] function)
         {
             int rowsNumber = 1;
 
-            for (int i = 0; i < array1.Length; i++)
+            for (int i = 0; i < fullName.Length; i++)
             {
-                Console.WriteLine($"{ i + 1}) {array1[i]} - {array2[i]}");
+                Console.WriteLine($"{ rowsNumber}) {fullName[i]} - {function[i]}");
                 rowsNumber++;
             }
 
         }
 
-        static string[] RemoveDossiers(string[] array, int index)
+        static string[] RemoveInformation(string[] data, int index)
         {
-            string[] tempArray = array;
-            array = new string[array.Length - 1];
+            string[] tempArray = data;
+            data = new string[data.Length - 1];
             index -= 1;
             int numberIteration = 0;
-
-            for (int i = 0; i < array.Length; i++)
+          
+            for (int i = 0; i < data.Length; i++)
             {
 
-                if (index == i)
+                if (index > i)
                 {
-                    numberIteration++;
-                    array[i] = tempArray[numberIteration];
-                }
-                else if (index > i)
-                {
-                    array[i] = tempArray[numberIteration];
+                    data[i] = tempArray[numberIteration];
                     numberIteration++;
                 }
                 else
                 {
                     numberIteration++;
-                    array[i] = tempArray[numberIteration];
+                    data[i] = tempArray[numberIteration];
                 }
             }
 
-            return array;
+            return data;
         }
 
         static int Search(string[] array)
@@ -128,7 +123,7 @@ namespace Кадровый_учёт
             {
                 dossier = array[i].Split();
 
-                if (dossier[dossierNumber] == lastName)
+                if (lastName == dossier[dossierNumber])
                 {
                     index = i;
                     dossierNumber++;
