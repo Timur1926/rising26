@@ -16,6 +16,9 @@ namespace Кадровый_учёт
             bool isContinue = true;
             string[] fullName = new string[0];
             string[] position = new string[0];
+            string name = "fullName";
+            string positionName = "positionName";
+            int removeDossier = 0;
 
             Console.WriteLine("\tМЕНЮ");
             Console.WriteLine($"Добавить досье - кнопка {AddDossierCommand};\nВывести всё досье - кнопака {AllDossierCommand};\n" +
@@ -29,49 +32,55 @@ namespace Кадровый_учёт
 
                 if (AddDossierCommand == userInput)
                 {
-                    Console.Write("Введите ФИО: ");
-                    fullName = AddDossiers(fullName);
-                    Console.Write("Введите должность: ");
-                    position = AddDossiers(position);
+                    fullName = AddDossiers(fullName, name);
+                    position = AddDossiers(position, positionName);
                 }
-                else if(AllDossierCommand == userInput)
+                else if (AllDossierCommand == userInput)
                 {
                     DisplayDossier(fullName, position);
                 }
                 else if (RemoveDossierCommand == userInput)
                 {
-                    Console.Write("Номер досье для удоления: ");
-                    int number = Convert.ToInt32(Console.ReadLine());
-                    fullName = RemoveInformation(fullName, number);
-                    position = RemoveInformation(position, number);
+                    removeDossier = DeleteDossierWithNumber();
+                    fullName = RemoveInformation(fullName, removeDossier);
+                    position = RemoveInformation(position, removeDossier);
                 }
                 else if (SearchLastNameCommand == userInput)
                 {
-                    int index = Search(fullName);
-                    Console.WriteLine(fullName[index] + " - " + position[index]);
+                    SearchLastName(fullName, position);
                 }
                 else if (ExitCommand == userInput)
                 {
                     isContinue = false;
-                } 
-                
+                }
             }
 
             Console.WriteLine("Программа завершена !!!");
         }
 
-        static string[] AddDossiers(string[] tempArray)
+        static string[] AddDossiers(string[] data, string dataDossier)
         {
-            string[] data = new string[tempArray.Length + 1];
+            string[] tempData = new string[data.Length + 1];
 
-            for (int i = 0; i < tempArray.Length; i++)
+            for (int i = 0; i < data.Length; i++)
             {
-                data[i] = tempArray[i];
+                tempData[i] = data[i];
             }
-           
-            data[data.Length - 1] = Console.ReadLine();
-            tempArray = data;
-            return tempArray;
+
+            if (dataDossier == "fullName")
+            {
+                Console.Write("Введите ФИО: ");
+                tempData[tempData.Length - 1] = Console.ReadLine();
+                data = tempData;
+            }
+            else
+            {
+                Console.Write("Введите вашу должность: ");
+                tempData[tempData.Length - 1] = Console.ReadLine();
+                data = tempData;
+            }
+
+            return data;
         }
 
         static void DisplayDossier(string[] fullName, string[] function)
@@ -90,9 +99,9 @@ namespace Кадровый_учёт
         {
             string[] tempArray = data;
             data = new string[data.Length - 1];
-            index -= 1;
             int numberIteration = 0;
-          
+            index -= 1;
+
             for (int i = 0; i < data.Length; i++)
             {
 
@@ -111,26 +120,30 @@ namespace Кадровый_учёт
             return data;
         }
 
-        static int Search(string[] array)
+        static int DeleteDossierWithNumber()
+        {
+            Console.Write("Введите номер дрсье для удоления: ");
+            int numberDossier = Convert.ToInt32(Console.ReadLine());
+            return numberDossier;
+        }
+
+        static void SearchLastName(string[] fullName, string[] position)
         {
             Console.Write("Введите фамилию для поиска досье: ");
             string lastName = Console.ReadLine();
-            string[] dossier;
-            int index = 0;
-            int dossierNumber = 0;
+            string[] name;
+            int iteration = 0;
 
-            for (int i = 0; i < array.Length; i++)
+            for (int i = 0; i < fullName.Length; i++)
             {
-                dossier = array[i].Split();
+                name = fullName[i].Split(' ');
 
-                if (lastName == dossier[dossierNumber])
+                if (lastName == name[iteration])
                 {
-                    index = i;
-                    dossierNumber++;
+                    Console.WriteLine(fullName[i] + " - " + position[i]);
                 }
             }
 
-            return index;
         }
     }
 }
