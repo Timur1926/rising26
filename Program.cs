@@ -5,6 +5,7 @@ namespace Кадровый_учёт
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             const string AddDossierCommand = "1";
@@ -13,12 +14,10 @@ namespace Кадровый_учёт
             const string SearchLastNameCommand = "4";
             const string ExitCommand = "5";
 
+            string[] fullName = { };
+            string[] position = { };
             bool isContinue = true;
-            string[] fullName = new string[0];
-            string[] position = new string[0];
-            string name = "fullName";
-            string positionName = "positionName";
-            int removeDossier = 0;
+            int numberDossier;
 
             Console.WriteLine("\tМЕНЮ");
             Console.WriteLine($"Добавить досье - кнопка {AddDossierCommand};\nВывести всё досье - кнопака {AllDossierCommand};\n" +
@@ -32,8 +31,8 @@ namespace Кадровый_учёт
 
                 if (AddDossierCommand == userInput)
                 {
-                    fullName = AddDossiers(fullName, name);
-                    position = AddDossiers(position, positionName);
+                    fullName = AddFullNmae(fullName);
+                    position = AddPosition(position);
                 }
                 else if (AllDossierCommand == userInput)
                 {
@@ -41,9 +40,9 @@ namespace Кадровый_учёт
                 }
                 else if (RemoveDossierCommand == userInput)
                 {
-                    removeDossier = DeleteDossierWithNumber();
-                    fullName = RemoveInformation(fullName, removeDossier);
-                    position = RemoveInformation(position, removeDossier);
+                     numberDossier = DeleteDossierWithNumber();
+                     fullName = RemoveInformation(fullName, numberDossier);
+                     position = RemoveInformation(position, numberDossier);
                 }
                 else if (SearchLastNameCommand == userInput)
                 {
@@ -58,7 +57,7 @@ namespace Кадровый_учёт
             Console.WriteLine("Программа завершена !!!");
         }
 
-        static string[] AddDossiers(string[] data, string dataDossier)
+        static string[] AddDossiersInformation(string[] data)
         {
             string[] tempData = new string[data.Length + 1];
 
@@ -67,29 +66,32 @@ namespace Кадровый_учёт
                 tempData[i] = data[i];
             }
 
-            if (dataDossier == "fullName")
-            {
-                Console.Write("Введите ФИО: ");
-                tempData[tempData.Length - 1] = Console.ReadLine();
-                data = tempData;
-            }
-            else
-            {
-                Console.Write("Введите вашу должность: ");
-                tempData[tempData.Length - 1] = Console.ReadLine();
-                data = tempData;
-            }
+            tempData[tempData.Length - 1] = Console.ReadLine();
+            data = tempData;
 
             return data;
         }
+        static string[] AddFullNmae(string[] information)
+        {
+            Console.Write("Введите ваши данные ФИО: ");
+            information = AddDossiersInformation(information);
+            return information;
+        }
 
-        static void DisplayDossier(string[] fullName, string[] function)
+        static string[] AddPosition(string[] information)
+        {
+            Console.Write("Введите вашу должность: ");
+            information = AddDossiersInformation(information);
+            return information;
+        }
+
+        static void DisplayDossier(string[]fullName, string[]position)
         {
             int rowsNumber = 1;
 
             for (int i = 0; i < fullName.Length; i++)
             {
-                Console.WriteLine($"{ rowsNumber}) {fullName[i]} - {function[i]}");
+                Console.WriteLine($"{ rowsNumber}) {fullName[i]} - {position[i]}");
                 rowsNumber++;
             }
 
@@ -115,6 +117,7 @@ namespace Кадровый_учёт
                     numberIteration++;
                     data[i] = tempArray[numberIteration];
                 }
+
             }
 
             return data;
@@ -122,13 +125,13 @@ namespace Кадровый_учёт
 
         static int DeleteDossierWithNumber()
         {
-            Console.Write("Введите номер дрсье для удоления: ");
+            Console.Write("Введиете ромер досье которое нужно удолить: ");
             int numberDossier = Convert.ToInt32(Console.ReadLine());
             return numberDossier;
         }
 
         static void SearchLastName(string[] fullName, string[] position)
-        {
+        { 
             Console.Write("Введите фамилию для поиска досье: ");
             string lastName = Console.ReadLine();
             string[] name;
@@ -145,5 +148,6 @@ namespace Кадровый_учёт
             }
 
         }
+
     }
 }
