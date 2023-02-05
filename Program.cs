@@ -101,7 +101,6 @@ namespace Кадровый_учёт
                 fullName = new string [fullName.Length - 1];
                 string[] tempPosition = position;
                 position = new string [position.Length - 1];
-
                 int numberIteration = 0;
                 index -= 1;
 
