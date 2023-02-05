@@ -42,14 +42,13 @@ namespace Кадровый_учёт
                         break;
 
                     case SearchLastNameCommand:
-                        SearchLastName(ref fullName, ref position);
+                        SearchLastName(fullName, position);
                         break;
 
                     case ExitCommand:
                         isContinue = false;
                         break;
                 }
-                
             }
 
             Console.WriteLine("Программа завершена !!!");
@@ -86,17 +85,18 @@ namespace Кадровый_учёт
                 Console.WriteLine($"{ rowsNumber}) {fullName[i]} - {position[i]}");
                 rowsNumber++;
             }
-
         }
 
         static void RemoveInformation(ref string[] fullName, ref string[] position)
         {
             int verificationСonditions = 0;
-            Console.Write("Выберите номер досье для удоления: ");
-            int index = Convert.ToInt32(Console.ReadLine());
+            int index = 0;
 
             if (fullName.Length > verificationСonditions && index <= fullName.Length)
             {
+                Console.Write("Выберите номер досье для удоления: ");
+                int numberDossier = Convert.ToInt32(Console.ReadLine());
+                index = numberDossier;
                 string[] tempFullName = fullName;
                 fullName = new string [fullName.Length - 1];
                 string[] tempPosition = position;
@@ -106,7 +106,6 @@ namespace Кадровый_учёт
 
                 for (int i = 0; i < fullName.Length; i++)
                 {
-
                     if (index > i)
                     {
                         fullName[i] = tempFullName[numberIteration];
@@ -119,13 +118,11 @@ namespace Кадровый_учёт
                         fullName[i] = tempFullName[numberIteration];
                         position[i] = tempPosition[numberIteration];
                     }
-
                 }
-
             }
         }
 
-        static void SearchLastName(ref string[] fullName, ref string[] position)
+        static void SearchLastName(string[] fullName, string[] position)
         {
             Console.Write("Введите фамилию для поиска досье: ");
             string lastName = Console.ReadLine();
@@ -141,9 +138,7 @@ namespace Кадровый_учёт
                 {
                     Console.WriteLine(fullName[i] + " - " + position[i]);
                 }
-
             }
-
         }
     }
 }
