@@ -44,5 +44,7 @@ namespace Healthbar
             Console.Write("]"+" "+ percent+"%");
             Console.WriteLine();
         }
+
     }
 }
+
