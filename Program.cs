@@ -16,7 +16,7 @@ namespace Healthbar
 
         static void DrawBar(int quantity, ConsoleColor consoleColor)
         {
-            int barValue = 100;
+            const int barValue = 100;
             ConsoleColor defaultConsoleColor = Console.BackgroundColor;
             char simbol = '_';
             int percent = 0;
