@@ -6,21 +6,32 @@ namespace Healthbar
     {
         static void Main(string[] args)
         {
+            const int boundsCheck = 100;
             Console.Write("Введите количество жизни в процентах: ");
-            int heath = Convert.ToInt32(Console.ReadLine());
+            double heathPercent = Convert.ToInt32(Console.ReadLine());
             Console.Write("Введите количество маны в процентах: ");
-            int mana = Convert.ToInt32(Console.ReadLine());
-            DrawBar(heath, ConsoleColor.DarkRed);
-            DrawBar(mana, ConsoleColor.DarkGreen);
+            double manaPercent = Convert.ToInt32(Console.ReadLine());
+
+            if (heathPercent <= boundsCheck && manaPercent <= boundsCheck)
+            {
+                DrawBar(heathPercent, 20, ConsoleColor.DarkRed);
+                DrawBar(manaPercent, 20, ConsoleColor.DarkGreen);
+            }
+            else
+            {
+                Console.WriteLine("!!!ERROR!!! Попробуё ещё!");
+            }
+            
         }
 
-        static void DrawBar(int quantity, ConsoleColor consoleColor)
+        static void DrawBar(double quantity, double barValue, ConsoleColor consoleColor)
         {
-            const int barValue = 100;
             ConsoleColor defaultConsoleColor = Console.BackgroundColor;
             char simbol = '_';
-            int percent = 0;
+            int percent = (int)quantity;
+            int allInterest = 100;
             Console.Write("[");
+            quantity = (barValue / allInterest) * quantity;
 
             for (int i = 1; i <= barValue; i++)
             {
@@ -34,17 +45,14 @@ namespace Healthbar
                 {
                     Console.BackgroundColor = defaultConsoleColor;
                     Console.Write(simbol);
-                    percent++;
                 }
 
             }
 
-            percent = barValue - percent;
             Console.BackgroundColor = defaultConsoleColor;
-            Console.Write("]"+" "+ percent+"%");
+            Console.Write("]" + " " + percent + "%");
             Console.WriteLine();
         }
-
     }
 }
 
