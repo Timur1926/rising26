@@ -9,67 +9,56 @@ namespace Healthbar
             const double barValue = 20;
             double healthPercent = 0.0;
             double manaPercent = 0.0;
-            bool parametersCorrect = false;
+            bool parametrsCorrect = true;
 
-            while (parametersCorrect == false)
+            while (parametrsCorrect)
             {
                 Console.Write("Введите количество жизни в процентах: ");
                 healthPercent = Convert.ToInt32(Console.ReadLine());
                 Console.Write("Введите количество маны в процентах: ");
                 manaPercent = Convert.ToInt32(Console.ReadLine());
-                parametersCorrect = InterestСheck(healthPercent, manaPercent);
+                parametrsCorrect = InterestCheck(healthPercent, manaPercent);
             }
 
-            DrawBar(healthPercent, barValue, ConsoleColor.DarkRed);
-            DrawBar(manaPercent, barValue, ConsoleColor.DarkGreen);
+            DrawBar(healthPercent, barValue, ConsoleColor.DarkRed, healthPercent, manaPercent);
+            DrawBar(manaPercent, barValue, ConsoleColor.DarkGreen, healthPercent, manaPercent);
+
         }
 
-        static void DrawBar(double quantity, double barValue, ConsoleColor consoleColor)
+        static void DrawBar(double quantityPercent, double barValue, ConsoleColor consoleColor, double percentHealth, double percentMana)
         {
             ConsoleColor defaultConsoleColor = Console.BackgroundColor;
             char simbol = '_';
-            int percent = (int)quantity;
+            int percent = (int)quantityPercent;
             int allInterest = 100;
             Console.Write("[");
-            quantity = (barValue / allInterest) * quantity;
-
-            for (int i = 1; i <= barValue; i++)
-            {
-
-                if (i <= quantity)
-                {
-                    Console.BackgroundColor = consoleColor;
-                    Console.Write(simbol);
-                }
-                else
-                {
-                    Console.BackgroundColor = defaultConsoleColor;
-                    Console.Write(simbol);
-                }
-
-            }
-
+            quantityPercent = (barValue / allInterest) * quantityPercent;
+            Console.BackgroundColor = consoleColor;
+            string bar = new string(simbol, (int)quantityPercent);
+            Console.Write(bar);
+            quantityPercent = barValue - quantityPercent;
             Console.BackgroundColor = defaultConsoleColor;
-            Console.Write("]" + " " + percent + "%");
-            Console.WriteLine();
+            bar = new string(simbol, (int)quantityPercent);
+            Console.Write(bar);
+            Console.Write("]" + " " + percent + "%" + "\n");
         }
 
-        static bool InterestСheck(double percentHealth, double percentMana)
+        static bool InterestCheck(double percentHealth, double percentMana)
         {
-            double maxValue = 100;
-            double minValue = 0;
-            bool parametersСorrect = false;
+            int barMax = 100;
+            int barMin = 0;
+            bool parametrsCorrect = true;
 
-            if (percentHealth <= maxValue && percentHealth >= minValue && percentMana <= maxValue && percentMana >= minValue)
+            if (percentHealth <= barMax && percentHealth >= barMin && percentMana <= barMax && percentMana >= barMin)
             {
-                parametersСorrect = true;
+                parametrsCorrect = false;
             }
             else
             {
-                Console.WriteLine("!!! ERROR !!! Попробуй ещё!");
+                Console.WriteLine("Ошибка при вводе процентов!!! Попробуй ещё!!");
             }
 
-            return parametersСorrect;
+            return parametrsCorrect;
         }
     }
 }
