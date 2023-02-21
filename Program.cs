@@ -1,55 +1,28 @@
 ﻿using System;
 
-namespace Healthbar
+namespace READINT
 {
     class Program
     {
         static void Main(string[] args)
         {
-            const double barValue = 20;
-            double healthPercent;
-            double manaPercent;
-            string value;
+            bool complete = false;
+            int convertedNumber = 0;
 
-            Console.Write("Введите количество жизни в процентах: ");
-            value = Console.ReadLine();
-            Double.TryParse(value, out healthPercent);
-            Console.Write("Введите количество маны в процентах: ");
-            value = Console.ReadLine();
-            Double.TryParse(value, out manaPercent);
+            while (complete != true)
+            {
+                Console.Write("Введите чило: ");
+                string userNumber = Console.ReadLine();
+                convertedNumber = Converter(userNumber, ref complete);
+            }
 
-            DrawBar(healthPercent, barValue, ConsoleColor.DarkRed);
-            DrawBar(manaPercent, barValue, ConsoleColor.DarkGreen);
+            Console.WriteLine($"Конвертированное число = {convertedNumber}");
         }
 
-        static void DrawBar(double quantityPercent, double barValue, ConsoleColor consoleColor)
+        static int Converter(string userNumber,ref bool complete)
         {
-            int barMax = 100;
-            int barMin = 0;
-
-            if (quantityPercent <= barMax && quantityPercent >= barMin)
-            {
-                ConsoleColor defaultConsoleColor = Console.BackgroundColor;
-                char simbol = '_';
-                int percent = (int)quantityPercent;
-                int allInterest = 100;
-                Console.Write("[");
-                quantityPercent = (barValue / allInterest) * quantityPercent;
-                Console.BackgroundColor = consoleColor;
-                string bar = new string(simbol, (int)quantityPercent);
-                Console.Write(bar);
-                quantityPercent = barValue - quantityPercent;
-                Console.BackgroundColor = defaultConsoleColor;
-                bar = new string(simbol, (int)quantityPercent);
-                Console.Write(bar);
-                Console.Write("]" + " " + percent + "%" + "\n");
-            }
-            else
-            {
-                Console.WriteLine("Начни сначала!!! Проценты не корректны!!!");
-            }
-
+            complete = int.TryParse(userNumber, out int number);
+            return number;
         }
     }
 }
-
