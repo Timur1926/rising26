@@ -6,22 +6,22 @@ namespace READINT
     {
         static void Main(string[] args)
         {
-            int convertedNumber;
-            convertedNumber = Converter();
-            Console.WriteLine($"Конвертированное число = {convertedNumber}");
+            int number;
+            number = Readint();
+            Console.WriteLine($"Конвертированное число = {number}");
         }
 
-        static int Converter()
+        static int Readint()
         {
             int number = 0;
-            bool complete = false;
+            bool isComplete = false;
             string userNumber;
 
-            while (complete != true)
+            while (isComplete != true)
             {
                 Console.Write("Введите чило: ");
                 userNumber = Console.ReadLine();
-                complete = int.TryParse(userNumber, out number);
+                isComplete = int.TryParse(userNumber, out number);
             }
             
             return number;
