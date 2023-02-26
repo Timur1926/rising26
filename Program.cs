@@ -7,21 +7,21 @@ namespace READINT
         static void Main(string[] args)
         {
             int number;
-            number = Readint();
+            number = GetReadint();
             Console.WriteLine($"Конвертированное число = {number}");
         }
 
-        static int Readint()
+        static int GetReadint()
         {
             int number = 0;
-            bool isComplete = false;
+            bool isNumber = false;
             string userNumber;
 
-            while (isComplete != true)
+            while (isNumber != true)
             {
                 Console.Write("Введите чило: ");
                 userNumber = Console.ReadLine();
-                isComplete = int.TryParse(userNumber, out number);
+                isNumber = int.TryParse(userNumber, out number);
             }
             
             return number;
