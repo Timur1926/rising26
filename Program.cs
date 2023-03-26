@@ -13,10 +13,11 @@ namespace BraveNewWorld
         static void DrawMap()
         {
             Console.CursorVisible = false;
-            int userX = 1, userY = 1;
+            int userX = 1;
+            int userY = 1;
             char hero = '@';
             int pocket = 0;
-            bool finish = true;
+            bool isFinish = true;
             char[,] map =
             {
                 {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
@@ -36,7 +37,7 @@ namespace BraveNewWorld
                 {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
             };
 
-            while (finish)
+            while (isFinish)
             {
 
                 for (int i = 0; i < map.GetLength(0); i++)
@@ -53,36 +54,54 @@ namespace BraveNewWorld
                 Console.WriteLine($"\n\n\n\nКарман: {pocket}$");
                 Console.SetCursorPosition(userY, userX);
                 Console.Write(hero);
-                finish = MoveHero(ref map, ref userX, ref userY, ref pocket);
+                MoveHero(map, ref userX, ref userY, ref pocket);
+                isFinish = EndGame(ref pocket);
                 Console.Clear();
             }
 
         }
 
-        static bool MoveHero(ref char[,] map, ref int userX, ref int userY, ref int pocket)
+        static void MoveHero(char[,] map, ref int userX, ref int userY, ref int pocket)
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey();
-            char dollar = '$';
-            char collectDollar = ' ';
-            bool finish = true;
-            int money = 504;
+            const ConsoleKey right = ConsoleKey.RightArrow;
+            const ConsoleKey left = ConsoleKey.LeftArrow;
+            const ConsoleKey up = ConsoleKey.UpArrow;
+            const ConsoleKey down = ConsoleKey.DownArrow;
 
             switch (keyInfo.Key)
             {
-                case ConsoleKey.RightArrow:
+                case right:
+                    DataChecking(map, ref userX, ref userY, ref pocket, right);
                     break;
 
-                case ConsoleKey.LeftArrow:
+                case left:
+                    DataChecking(map, ref userX, ref userY, ref pocket, left);
                     break;
 
-                case ConsoleKey.UpArrow:
+                case up:
+                    DataChecking(map, ref userX, ref userY, ref pocket, up);
                     break;
 
-                case ConsoleKey.DownArrow:
+                case down:
+                    DataChecking(map, ref userX, ref userY, ref pocket, down);
                     break;
             }
+            
+        }
 
-            if (keyInfo.Key == ConsoleKey.RightArrow && map[userX, userY + 1] != '#')
+        static void DataChecking(char[,] map, ref int userX, ref int userY, ref int pocket, ConsoleKey key)
+        {
+            const char wall = '#';
+            char dollar = '$';
+            char collectDollar = ' ';
+
+            const ConsoleKey right = ConsoleKey.RightArrow;
+            const ConsoleKey left = ConsoleKey.LeftArrow;
+            const ConsoleKey up = ConsoleKey.UpArrow;
+            const ConsoleKey down = ConsoleKey.DownArrow;
+
+            if (right == key && map[userX, userY + 1] != wall)
             {
 
                 if (map[userX, userY] == dollar)
@@ -97,7 +116,7 @@ namespace BraveNewWorld
                 }
 
             }
-            else if (keyInfo.Key == ConsoleKey.LeftArrow && map[userX, userY - 1] != '#')
+            else if (left == key && map[userX, userY - 1] != wall)
             {
 
                 if (map[userX, userY] == '$')
@@ -112,7 +131,7 @@ namespace BraveNewWorld
                 }
 
             }
-            else if (keyInfo.Key == ConsoleKey.UpArrow && map[userX - 1, userY] != '#')
+            else if (up == key && map[userX - 1, userY] != wall)
             {
 
                 if (map[userX, userY] == '$')
@@ -127,7 +146,7 @@ namespace BraveNewWorld
                 }
 
             }
-            else if (keyInfo.Key == ConsoleKey.DownArrow && map[userX + 1, userY] != '#')
+            else if (down == key && map[userX + 1, userY] != wall)
             {
 
                 if (map[userX, userY] == '$')
@@ -142,6 +161,12 @@ namespace BraveNewWorld
                 }
 
             }
+        }
+
+        static bool EndGame(ref int pocket)
+        {
+            bool finish = true;
+            int money = 504;
 
             if (pocket == money)
             {
