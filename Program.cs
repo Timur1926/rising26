@@ -55,7 +55,7 @@ namespace BraveNewWorld
                 Console.SetCursorPosition(userY, userX);
                 Console.Write(hero);
                 MoveHero(map, ref userX, ref userY, ref pocket);
-                isFinish = EndGame(ref pocket);
+                isFinish = TryExit(pocket);
                 Console.Clear();
             }
 
@@ -95,7 +95,6 @@ namespace BraveNewWorld
             const char wall = '#';
             char dollar = '$';
             char collectDollar = ' ';
-
             const ConsoleKey right = ConsoleKey.RightArrow;
             const ConsoleKey left = ConsoleKey.LeftArrow;
             const ConsoleKey up = ConsoleKey.UpArrow;
@@ -161,9 +160,10 @@ namespace BraveNewWorld
                 }
 
             }
+
         }
 
-        static bool EndGame(ref int pocket)
+        static bool TryExit(int pocket)
         {
             bool finish = true;
             int money = 504;
