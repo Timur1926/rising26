@@ -19,6 +19,7 @@ namespace Shuffle
             {
                 Console.Write(massiv + " | ");
             }
+
             Console.WriteLine();
         }
 
