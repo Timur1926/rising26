@@ -9,15 +9,14 @@ namespace Shuffle
             int[] numberArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             DisplayArray(numberArray);
             Shuffle(numberArray);
-            DisplayArray(numberArray);
         }
 
         static void DisplayArray(int[]numberArray)
         {
 
-            foreach (int massiv in numberArray)
+            foreach (int tempArray in numberArray)
             {
-                Console.Write(massiv + " | ");
+                Console.Write(" " + tempArray + " | ");
             }
 
             Console.WriteLine();
@@ -26,14 +25,17 @@ namespace Shuffle
         static void Shuffle(int[]numberArray)
         {
             Random random = new Random();
-            int[] tempArray = numberArray;
+            //int[] tempArray = numberArray;
+            int maxValue = 10;
+            int minValue = 0;
 
             for (int i = 0; i < numberArray.Length; i++)
             {
-                int index = random.Next(0, 9);
-                numberArray[i] = tempArray[index];
+                int index = random.Next(minValue, maxValue);
+                Console.Write(" " + numberArray[index] + " | ");
             }
 
+            Console.WriteLine();
         }
     }
 }
