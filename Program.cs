@@ -9,9 +9,10 @@ namespace Shuffle
             int[] numberArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             DisplayArray(numberArray);
             Shuffle(numberArray);
+            DisplayArray(numberArray);
         }
 
-        static void DisplayArray(int[]numberArray)
+        static void DisplayArray(int[] numberArray)
         {
 
             foreach (int tempArray in numberArray)
@@ -19,23 +20,25 @@ namespace Shuffle
                 Console.Write(" " + tempArray + " | ");
             }
 
-            Console.WriteLine();
+            Console.WriteLine("\n");
         }
 
-        static void Shuffle(int[]numberArray)
+        static void Shuffle(int[] numberArray)
         {
-            Random random = new Random();
-            //int[] tempArray = numberArray;
-            int maxValue = 10;
+            int tempNumber;
             int minValue = 0;
+            int maxValue = 10;
+            Random random = new Random();
 
-            for (int i = 0; i < numberArray.Length; i++)
+            for (int i = numberArray.Length - 1; i > 0; i--)
             {
-                int index = random.Next(minValue, maxValue);
-                Console.Write(" " + numberArray[index] + " | ");
+                int j = random.Next(minValue, maxValue);
+                tempNumber = numberArray[i];
+                numberArray[i] = numberArray[j];
+                numberArray[j] = tempNumber;
             }
 
-            Console.WriteLine();
         }
+
     }
 }
