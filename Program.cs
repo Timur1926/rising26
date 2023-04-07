@@ -14,7 +14,6 @@ namespace Shuffle
 
         static void DisplayArray(int[] numberArray)
         {
-
             foreach (int tempArray in numberArray)
             {
                 Console.Write(" " + tempArray + " | ");
@@ -37,8 +36,6 @@ namespace Shuffle
                 numberArray[i] = numberArray[j];
                 numberArray[j] = tempNumber;
             }
-
         }
-
     }
 }
