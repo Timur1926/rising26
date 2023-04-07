@@ -14,9 +14,9 @@ namespace Shuffle
 
         static void DisplayArray(int[] numberArray)
         {
-            foreach (int tempArray in numberArray)
+            foreach (int tempNumber in numberArray)
             {
-                Console.Write(" " + tempArray + " | ");
+                Console.Write(" " + tempNumber + " | ");
             }
 
             Console.WriteLine("\n");
@@ -26,15 +26,14 @@ namespace Shuffle
         {
             int tempNumber;
             int minValue = 0;
-            int maxValue = 10;
             Random random = new Random();
 
             for (int i = numberArray.Length - 1; i > 0; i--)
             {
-                int j = random.Next(minValue, maxValue);
+                int randomJ = random.Next(minValue, i);
                 tempNumber = numberArray[i];
-                numberArray[i] = numberArray[j];
-                numberArray[j] = tempNumber;
+                numberArray[i] = numberArray[randomJ];
+                numberArray[randomJ] = tempNumber;
             }
         }
     }
