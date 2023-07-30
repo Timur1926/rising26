@@ -36,7 +36,6 @@ namespace ExplanatoryDictionary
             {
                 Console.WriteLine("ERROR!!! Такого значения в списке словаря нет!!!");
             }
-
         }
     }
 }
