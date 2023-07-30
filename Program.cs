@@ -28,23 +28,15 @@ namespace ExplanatoryDictionary
             Console.Write("Введи слово из списка, значение которого ты хочеш узнать: ");
             string userRequest = Console.ReadLine().ToLower();
 
-            foreach (var value in keyValuePairs)
+            if (keyValuePairs.ContainsKey(userRequest))
             {
-                
-                if (value.Key == userRequest)
-                {
-                    Console.WriteLine($"\n{value.Key} - {value.Value}");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("ERROR!!!  Такого слова нет в словаре!!!");
-                    break;
-                }
-
+                Console.WriteLine($"{userRequest} - {keyValuePairs[userRequest]}");
+            }
+            else
+            {
+                Console.WriteLine("ERROR!!! Такого значения в списке словаря нет!!!");
             }
 
         }
-
     }
 }
