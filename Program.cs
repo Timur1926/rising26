@@ -1,40 +1,50 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace Shuffle
+namespace ExplanatoryDictionary
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int[] numberArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            DisplayArray(numberArray);
-            Shuffle(numberArray);
-            DisplayArray(numberArray);
-        }
+            Console.WriteLine("***** Тольковый словарь *****");
+            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
 
-        static void DisplayArray(int[] numberArray)
-        {
-            foreach (int tempNumber in numberArray)
+            keyValuePairs.Add("ассигнация", "бумажный денежный знак в России (с 1769 г. по 1843 г.)");
+            keyValuePairs.Add("маржа", "разница между ценой и себестоимостью (аналог понятия прибыль)");
+            keyValuePairs.Add("опцион", "это один из производных финансовых инструментов");
+            keyValuePairs.Add("инфляция", "устойчивое повышение общего уровня цен на товары и услуги");
+            keyValuePairs.Add("дэфолт", "(англ. default — невыполнение обязательств) — невыполнение договора займа");
+            keyValuePairs.Add("девальвация", "снижения курса национальной валюты по отношению к твёрдым валютам в системах с фиксированным курсом валюты, устанавливаемым денежными властями");
+            keyValuePairs.Add("деноминация", "изменение (а точнее уменьшение численного масштаба) номинальной (нарицательной) стоимости денежных знаков");
+
+            Console.WriteLine("=> Список слов в словаре");
+
+            foreach (var keyValue in keyValuePairs)
             {
-                Console.Write(" " + tempNumber + " | ");
+                Console.WriteLine($"-> {keyValue.Key}");
             }
 
-            Console.WriteLine("\n");
-        }
+            Console.Write("Введи слово из списка, значение которого ты хочеш узнать: ");
+            string userRequest = Console.ReadLine().ToLower();
 
-        static void Shuffle(int[] numberArray)
-        {
-            int tempNumber;
-            int minValue = 0;
-            Random random = new Random();
-
-            for (int i = numberArray.Length - 1; i > 0; i--)
+            foreach (var value in keyValuePairs)
             {
-                int randomJ = random.Next(minValue, i);
-                tempNumber = numberArray[i];
-                numberArray[i] = numberArray[randomJ];
-                numberArray[randomJ] = tempNumber;
+                
+                if (value.Key == userRequest)
+                {
+                    Console.WriteLine($"\n{value.Key} - {value.Value}");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("ERROR!!!  Такого слова нет в словаре!!!");
+                    break;
+                }
+
             }
+
         }
+
     }
 }
