@@ -1,41 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ExplanatoryDictionary
+namespace QueueAtStore
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("***** Тольковый словарь *****");
-            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+            Queue<int> check = new Queue<int>();
+            Queue<string> client = new Queue<string>();
+            int storeAccount = 0;
+            int emptyQueue = 0;
+            int clientNumber = 0;
+            check.Enqueue(10);
+            check.Enqueue(20);
+            check.Enqueue(30);
+            check.Enqueue(40);
+            check.Enqueue(50);
+            check.Enqueue(60);
+            check.Enqueue(70);
+            check.Enqueue(80);
 
-            keyValuePairs.Add("ассигнация", "бумажный денежный знак в России (с 1769 г. по 1843 г.)");
-            keyValuePairs.Add("маржа", "разница между ценой и себестоимостью (аналог понятия прибыль)");
-            keyValuePairs.Add("опцион", "это один из производных финансовых инструментов");
-            keyValuePairs.Add("инфляция", "устойчивое повышение общего уровня цен на товары и услуги");
-            keyValuePairs.Add("дэфолт", "(англ. default — невыполнение обязательств) — невыполнение договора займа");
-            keyValuePairs.Add("девальвация", "снижения курса национальной валюты по отношению к твёрдым валютам в системах с фиксированным курсом валюты, устанавливаемым денежными властями");
-            keyValuePairs.Add("деноминация", "изменение (а точнее уменьшение численного масштаба) номинальной (нарицательной) стоимости денежных знаков");
-
-            Console.WriteLine("=> Список слов в словаре");
-
-            foreach (var keyValue in keyValuePairs)
+            while (check.Count > emptyQueue)
             {
-                Console.WriteLine($"-> {keyValue.Key}");
+                Console.Clear();
+                storeAccount += check.Dequeue();
+                clientNumber++;
+                Console.WriteLine($"Клиент #{clientNumber}");
+                Console.WriteLine($"Счёт магазина: {storeAccount}");
+                Console.ReadKey();
             }
 
-            Console.Write("Введи слово из списка, значение которого ты хочеш узнать: ");
-            string userRequest = Console.ReadLine().ToLower();
-
-            if (keyValuePairs.ContainsKey(userRequest))
-            {
-                Console.WriteLine($"{userRequest} - {keyValuePairs[userRequest]}");
-            }
-            else
-            {
-                Console.WriteLine("ERROR!!! Такого значения в списке словаря нет!!!");
-            }
         }
     }
 }
