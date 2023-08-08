@@ -1,36 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace QueueAtStore
+namespace DynamicArray
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Queue<int> check = new Queue<int>();
-            Queue<string> client = new Queue<string>();
-            int storeAccount = 0;
-            int emptyQueue = 0;
-            int clientNumber = 0;
-            check.Enqueue(10);
-            check.Enqueue(20);
-            check.Enqueue(30);
-            check.Enqueue(40);
-            check.Enqueue(50);
-            check.Enqueue(60);
-            check.Enqueue(70);
-            check.Enqueue(80);
+            List<int> userData = new List<int>();
+            bool exit = true;
+            string number;
+            string sum = "sum";
+            int result;
 
-            while (check.Count > emptyQueue)
+            Console.WriteLine("Пользователь может вводить числа");
+            Console.WriteLine("Если пользователь введёт \"sum\" то на экран выведется сумма всех введённых ранее чисел");
+
+            while (exit)
             {
-                Console.Clear();
-                storeAccount += check.Dequeue();
-                clientNumber++;
-                Console.WriteLine($"Клиент #{clientNumber}");
-                Console.WriteLine($"Счёт магазина: {storeAccount}");
-                Console.ReadKey();
-            }
+                number = Console.ReadLine();
 
+                try
+                {
+
+                    if (number.Equals(sum))
+                    {
+                        result = userData.Sum();
+                        Console.WriteLine(result);
+                        Console.Write("Закончить программу? \"yes\" \"no\" ");
+                        string finish = Console.ReadLine();
+
+                        if (finish == "yes")
+                        {
+                            exit = false;
+                        }
+
+                        userData.Clear();
+                    }
+                    else
+                    {
+                        userData.Add(Int32.Parse(number));
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Не допустимое значение!!!");
+                }
+            }
         }
     }
 }
