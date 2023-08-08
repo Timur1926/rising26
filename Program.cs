@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DynamicArray
 {
@@ -30,10 +28,10 @@ namespace DynamicArray
                     {
                         result = userData.Sum();
                         Console.WriteLine(result);
-                        Console.Write("Закончить программу? \"yes\" \"no\" ");
+                        Console.Write("Для завершения программы пишем команду \"exit\"");
                         string finish = Console.ReadLine();
 
-                        if (finish == "yes")
+                        if (finish == "exit")
                         {
                             exit = false;
                         }
@@ -44,6 +42,7 @@ namespace DynamicArray
                     {
                         userData.Add(Int32.Parse(number));
                     }
+
                 }
                 catch (Exception)
                 {
