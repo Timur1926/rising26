@@ -8,47 +8,55 @@ namespace DynamicArray
     {
         static void Main(string[] args)
         {
-            List<int> userData = new List<int>();
-            bool exit = true;
-            string number;
-            string sum = "sum";
-            int result;
-
-            Console.WriteLine("Пользователь может вводить числа");
-            Console.WriteLine("Если пользователь введёт \"sum\" то на экран выведется сумма всех введённых ранее чисел");
-
-            while (exit)
+            List<int> numbers = new List<int>();
+            string inputUser;
+            int numberUser;
+            bool isNumber;
+            string exit = "exit";
+            string sumNumbers = "sum";
+            bool canExit = true;
+            
+            Console.WriteLine("=> Пользователь вводит целые числа");
+            Console.WriteLine($"=> команда ({sumNumbers}) выводит сумму всех чисел");
+            Console.WriteLine($"=> Команда ({exit}) завершает программу");
+            
+            while (canExit)
             {
-                number = Console.ReadLine();
+                Console.Write("Введи команду: ");
+                inputUser = Console.ReadLine();
+                isNumber = int.TryParse(inputUser, out numberUser);
 
-                try
+                if (isNumber)
                 {
-
-                    if (number.Equals(sum))
+                    numbers.Add(numberUser);
+                }
+                else if (inputUser == sumNumbers)
+                {
+                    Console.WriteLine($"Сумма всех введённых чисел = {numbers.Sum()}");
+                    Console.WriteLine($"Закончить команда {exit} | Продолжит нажми enter");
+                    Console.WriteLine("-------------------");
+                    inputUser = Console.ReadLine();
+                    
+                    if (inputUser == exit)
                     {
-                        result = userData.Sum();
-                        Console.WriteLine(result);
-                        Console.Write("Для завершения программы пишем команду \"exit\"");
-                        string finish = Console.ReadLine();
-
-                        if (finish == "exit")
-                        {
-                            exit = false;
-                        }
-
-                        userData.Clear();
+                        canExit = false;
                     }
                     else
                     {
-                        userData.Add(Int32.Parse(number));
+                        numbers.Clear();
                     }
-
                 }
-                catch (Exception)
+                else if (inputUser == exit)
                 {
-                    Console.WriteLine("Не допустимое значение!!!");
+                    canExit = false;
                 }
+                else
+                {
+                    Console.WriteLine($"ERROR!!! Таких команд в меню нет, попробуй снова!!!");
+                }
+                
             }
         }
+
     }
 }
