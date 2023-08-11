@@ -32,18 +32,7 @@ namespace DynamicArray
                 }
                 else if (inputUser == sumNumbers)
                 {
-                    Console.WriteLine($"Сумма всех введённых чисел = {numbers.Sum()}");
-                    Console.WriteLine($"Закончить команда {exit} | Продолжит нажми enter");
-                    inputUser = Console.ReadLine();
-                    
-                    if (inputUser == exit)
-                    {
-                        canExit = false;
-                    }
-                    else
-                    {
-                        numbers.Clear();
-                    }
+                    SumDisplay(ref numbers, ref canExit, ref inputUser, exit);
                 }
                 else if (inputUser == exit)
                 {
@@ -53,6 +42,22 @@ namespace DynamicArray
                 {
                     Console.WriteLine($"ERROR!!! Таких команд в меню нет, попробуй снова!!!");
                 }
+            }
+        }
+
+        public static void SumDisplay(ref List<int>numbers, ref bool canExit, ref string inputUser, string exit)
+        {
+            Console.WriteLine($"Сумма всех введённых чисел = {numbers.Sum()}");
+            Console.WriteLine($"Закончить команда {exit} | Продолжит нажми enter");
+            inputUser = Console.ReadLine();
+
+            if (inputUser == exit)
+            {
+                canExit = false;
+            }
+            else
+            {
+                numbers.Clear();
             }
         }
     }
