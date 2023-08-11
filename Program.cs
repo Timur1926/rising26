@@ -34,7 +34,6 @@ namespace DynamicArray
                 {
                     Console.WriteLine($"Сумма всех введённых чисел = {numbers.Sum()}");
                     Console.WriteLine($"Закончить команда {exit} | Продолжит нажми enter");
-                    Console.WriteLine("-------------------");
                     inputUser = Console.ReadLine();
                     
                     if (inputUser == exit)
@@ -54,9 +53,7 @@ namespace DynamicArray
                 {
                     Console.WriteLine($"ERROR!!! Таких команд в меню нет, попробуй снова!!!");
                 }
-                
             }
         }
-
     }
 }
