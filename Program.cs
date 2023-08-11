@@ -32,7 +32,7 @@ namespace DynamicArray
                 }
                 else if (inputUser == sumNumbers)
                 {
-                    SumDisplay(ref numbers, ref canExit, ref inputUser, exit);
+                    ShowDisplay(numbers);
                 }
                 else if (inputUser == exit)
                 {
@@ -45,20 +45,10 @@ namespace DynamicArray
             }
         }
 
-        public static void SumDisplay(ref List<int>numbers, ref bool canExit, ref string inputUser, string exit)
+        public static void ShowDisplay(List<int>numbers)
         {
             Console.WriteLine($"Сумма всех введённых чисел = {numbers.Sum()}");
-            Console.WriteLine($"Закончить команда {exit} | Продолжит нажми enter");
-            inputUser = Console.ReadLine();
-
-            if (inputUser == exit)
-            {
-                canExit = false;
-            }
-            else
-            {
-                numbers.Clear();
-            }
+            numbers.Clear();
         }
     }
 }
