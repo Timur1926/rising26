@@ -22,7 +22,6 @@ namespace КадровыйУчётПродвинутый
 
             while (haveContinue)
             {
-
                 Console.Write("\nВыбери номер команды: ");
                 numberComand = Console.ReadLine();
 
