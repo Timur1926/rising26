@@ -66,29 +66,28 @@ namespace КадровыйУчётПродвинутый
             }
         }
 
-        static void DeleteDossier(List<string> delDossier, List<string> delEmploye)
+        static void DeleteDossier(List<string> deleteDossier, List<string> deleteEmploye)
         {
-            bool isDeleteItem;
+            bool isDelete;
             Console.Write("Введите фамилию того чъё досье нужно удалить: ");
             string farstName = Console.ReadLine();
 
-            for (int i = 0; i < delDossier.Count; i++)
+            for (int i = 0; i < deleteDossier.Count; i++)
             {
-                isDeleteItem = delDossier[i].Contains(farstName.ToLower());
+                isDelete = deleteDossier[i].Contains(farstName.ToLower());
 
-                if (isDeleteItem)
+                if (isDelete)
                 {
-                    delDossier.RemoveAt(i);
-                    delEmploye.RemoveAt(i);
-                    isDeleteItem = false;
+                    deleteDossier.RemoveAt(i);
+                    deleteEmploye.RemoveAt(i);
+                    isDelete = false;
                 }
             }
         }
 
-        static bool Exit(ref bool exit)
+        static void Exit(ref bool exit)
         {
             exit = false;
-            return exit;
         }
     }
 }
