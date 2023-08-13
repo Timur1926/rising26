@@ -10,15 +10,15 @@ namespace КадровыйУчётПродвинутый
             List<string> fullNameOfEmployees = new List<string>();
             List<string> employeesPosition = new List<string>();
 
-            Console.WriteLine("\tКадровый учёт\n");
-            Console.WriteLine("Меню: \tкоманда 1 - добавить досье\n\tкоманда 2 - вывести всё досье\n\tкоманда 3 - удолить досье\n\tкоманда 4 - звершить программу");
-
             string numberComand;
             bool haveContinue = true;
             const string numberComand1 = "1";
             const string numberComand2 = "2";
             const string numberComand3 = "3";
             const string numberComand4 = "4";
+
+            Console.WriteLine("\tКадровый учёт\n");
+            Console.WriteLine($"Меню: \tкоманда {numberComand1} - добавить досье\n\tкоманда {numberComand2} - вывести всё досье\n\tкоманда {numberComand3} - удолить досье\n\tкоманда {numberComand4} - звершить программу");
 
             while (haveContinue)
             {
@@ -31,13 +31,13 @@ namespace КадровыйУчётПродвинутый
                     switch (numberComand)
                     {
                         case numberComand1:
-                            AddDossier(ref fullNameOfEmployees, ref employeesPosition);
+                            AddDossier(fullNameOfEmployees,  employeesPosition);
                             break;
                         case numberComand2:
-                            ShowAllDossiers(ref fullNameOfEmployees, ref employeesPosition);
+                            ShowAllDossiers(fullNameOfEmployees, employeesPosition);
                             break;
                         case numberComand3:
-                            DeleteDossier(ref fullNameOfEmployees, ref employeesPosition);
+                            DeleteDossier(fullNameOfEmployees, employeesPosition);
                             break;
                         case numberComand4:
                             Exit(ref haveContinue);
@@ -51,7 +51,7 @@ namespace КадровыйУчётПродвинутый
             }
         }
 
-        static void AddDossier(ref List<string> dossier, ref List<string> employe)
+        static void AddDossier(List<string> dossier, List<string> employe)
         {
             Console.Write("Введите ФИО: ");
             string fullName = Console.ReadLine();
@@ -61,7 +61,7 @@ namespace КадровыйУчётПродвинутый
             employe.Add(employePosition);
         }
 
-        static void ShowAllDossiers(ref List<string> dossiers, ref List<string> empoyes)
+        static void ShowAllDossiers(List<string> dossiers, List<string> empoyes)
         {
             Console.WriteLine("\t\nДосье всех сотрудников");
 
@@ -71,7 +71,7 @@ namespace КадровыйУчётПродвинутый
             }
         }
 
-        static void DeleteDossier(ref List<string> delDossier, ref List<string> delEmploye)
+        static void DeleteDossier(List<string> delDossier, List<string> delEmploye)
         {
             bool isDeleteItem;
             Console.Write("Введите фамилию того чъё досье нужно удалить: ");
