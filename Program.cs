@@ -25,28 +25,23 @@ namespace КадровыйУчётПродвинутый
                 Console.Write("\nВыбери номер команды: ");
                 numberComand = Console.ReadLine();
 
-                if (numberComand == numberComand1 || numberComand == numberComand2 || numberComand == numberComand3 || numberComand == numberComand4)
+                switch (numberComand)
                 {
-
-                    switch (numberComand)
-                    {
-                        case numberComand1:
-                            AddDossier(fullNameOfEmployees,  employeesPosition);
-                            break;
-                        case numberComand2:
-                            ShowAllDossiers(fullNameOfEmployees, employeesPosition);
-                            break;
-                        case numberComand3:
-                            DeleteDossier(fullNameOfEmployees, employeesPosition);
-                            break;
-                        case numberComand4:
-                            Exit(ref haveContinue);
-                            break;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("ERROR!!! Такой команды в меню нет!!!");
+                    case numberComand1:
+                        AddDossier(fullNameOfEmployees, employeesPosition);
+                        break;
+                    case numberComand2:
+                        ShowAllDossiers(fullNameOfEmployees, employeesPosition);
+                        break;
+                    case numberComand3:
+                        DeleteDossier(fullNameOfEmployees, employeesPosition);
+                        break;
+                    case numberComand4:
+                        Exit(ref haveContinue);
+                        break;
+                    default:
+                        Console.WriteLine("ERROR!!! Такой команды в меню нет!!!");
+                        break;
                 }
             }
         }
@@ -67,7 +62,7 @@ namespace КадровыйУчётПродвинутый
 
             for (int i = 0; i < dossiers.Count; i++)
             {
-                Console.WriteLine(dossiers[i]+" - "+empoyes[i]);
+                Console.WriteLine(dossiers[i] + " - " + empoyes[i]);
             }
         }
 
