@@ -1,93 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace КадровыйУчётПродвинутый
+namespace MergeIntoOneArray
 {
     class Program
     {
         static void Main(string[] args)
         {
-            List<string> fullNameOfEmployees = new List<string>();
-            List<string> employeesPosition = new List<string>();
+            string[] string1 = new string[] { "1", "2", "1" };
+            string[] string2 = new string[] { "1", "2", "3" };
 
-            string numberComand;
-            bool haveContinue = true;
-            const string numberComand1 = "1";
-            const string numberComand2 = "2";
-            const string numberComand3 = "3";
-            const string numberComand4 = "4";
+            List<string> mergeColection = new List<string>();
 
-            Console.WriteLine("\tКадровый учёт\n");
-            Console.WriteLine($"Меню: \tкоманда {numberComand1} - добавить досье\n\tкоманда {numberComand2} - вывести всё досье\n\tкоманда {numberComand3} - удолить досье\n\tкоманда {numberComand4} - звершить программу");
-
-            while (haveContinue)
+            for (int i = 0; i < string1.Length; i++)
             {
-                Console.Write("\nВыбери номер команды: ");
-                numberComand = Console.ReadLine();
-
-                switch (numberComand)
-                {
-                    case numberComand1:
-                        AddDossier(fullNameOfEmployees, employeesPosition);
-                        break;
-                    case numberComand2:
-                        ShowAllDossiers(fullNameOfEmployees, employeesPosition);
-                        break;
-                    case numberComand3:
-                        DeleteDossier(fullNameOfEmployees, employeesPosition);
-                        break;
-                    case numberComand4:
-                        Exit(ref haveContinue);
-                        break;
-                    default:
-                        Console.WriteLine("ERROR!!! Такой команды в меню нет!!!");
-                        break;
-                }
+                mergeColection.Add(string1[i]);
+                mergeColection.Add(string2[i]);
+                mergeColection.Sort();
             }
-        }
 
-        static void AddDossier(List<string> dossier, List<string> employe)
-        {
-            Console.Write("Введите ФИО: ");
-            string fullName = Console.ReadLine();
-            dossier.Add(fullName);
-            Console.Write("Введите должность: ");
-            string employePosition = Console.ReadLine();
-            employe.Add(employePosition);
-        }
-
-        static void ShowAllDossiers(List<string> dossiers, List<string> empoyes)
-        {
-            Console.WriteLine("\t\nДосье всех сотрудников");
-
-            for (int i = 0; i < dossiers.Count; i++)
+            for (int i = 0; i < mergeColection.Count; i++)
             {
-                Console.WriteLine(dossiers[i] + " - " + empoyes[i]);
+                int numberItem;
+                numberItem = mergeColection.BinarySearch(mergeColection[i]);
+                mergeColection.RemoveAt(numberItem);
             }
-        }
-
-        static void DeleteDossier(List<string> deleteDossier, List<string> deleteEmploye)
-        {
-            bool isDelete;
-            Console.Write("Введите фамилию того чъё досье нужно удалить: ");
-            string farstName = Console.ReadLine();
-
-            for (int i = 0; i < deleteDossier.Count; i++)
-            {
-                isDelete = deleteDossier[i].Contains(farstName.ToLower());
-
-                if (isDelete)
-                {
-                    deleteDossier.RemoveAt(i);
-                    deleteEmploye.RemoveAt(i);
-                    isDelete = false;
-                }
-            }
-        }
-
-        static void Exit(ref bool exit)
-        {
-            exit = false;
         }
     }
 }
