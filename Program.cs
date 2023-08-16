@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MergeIntoOneArray
 {
@@ -22,12 +19,18 @@ namespace MergeIntoOneArray
                 mergeColection.Sort();
             }
 
+            Console.WriteLine("Объединённая, сортированная коллекция");
+
             for (int i = 0; i < mergeColection.Count; i++)
             {
                 int numberItem;
                 numberItem = mergeColection.BinarySearch(mergeColection[i]);
                 mergeColection.RemoveAt(numberItem);
+
+                Console.Write(mergeColection[i] + " | ");
             }
+
+            Console.WriteLine();
         }
     }
 }
