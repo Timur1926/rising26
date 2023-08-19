@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MergeIntoOneArray
 {
@@ -7,30 +6,33 @@ namespace MergeIntoOneArray
     {
         static void Main(string[] args)
         {
-            string[] string1 = new string[] { "1", "2", "1" };
-            string[] string2 = new string[] { "1", "2", "3" };
+            string[] strings1 = new string[] { "1", "2", "1" };
+            string[] strings2 = new string[] { "1", "2", "3" };
 
             List<string> mergeColection = new List<string>();
 
-            for (int i = 0; i < string1.Length; i++)
-            {
-                mergeColection.Add(string1[i]);
-                mergeColection.Add(string2[i]);
-                mergeColection.Sort();
-            }
+            AddItemsInCollection(strings1, mergeColection);
+            AddItemsInCollection(strings2, mergeColection);
+        }
 
-            Console.WriteLine("Объединённая, сортированная коллекция");
-
+        public static void AddItemsInCollection(string[] items, List<string> mergeColection)
+        {
+            mergeColection.AddRange(items);
+            mergeColection.Sort();
+           
             for (int i = 0; i < mergeColection.Count; i++)
             {
-                int numberItem;
-                numberItem = mergeColection.BinarySearch(mergeColection[i]);
-                mergeColection.RemoveAt(numberItem);
+                string item;
+                item = mergeColection[i];
+                int indexItem;
+                indexItem = mergeColection.LastIndexOf(item);
 
-                Console.Write(mergeColection[i] + " | ");
+                if (mergeColection[i].Equals(mergeColection[indexItem]))
+                {
+                    mergeColection.RemoveAt(indexItem);
+                    i++;
+                }
             }
-
-            Console.WriteLine();
         }
     }
 }
