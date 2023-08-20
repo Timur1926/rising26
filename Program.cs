@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MergeIntoOneArray
 {
@@ -13,26 +14,37 @@ namespace MergeIntoOneArray
 
             AddItemsInCollection(strings1, mergeColection);
             AddItemsInCollection(strings2, mergeColection);
+            ShowDisplay(mergeColection);
         }
 
         public static void AddItemsInCollection(string[] items, List<string> mergeColection)
         {
-            mergeColection.AddRange(items);
-            mergeColection.Sort();
-           
-            for (int i = 0; i < mergeColection.Count; i++)
-            {
-                string item;
-                item = mergeColection[i];
-                int indexItem;
-                indexItem = mergeColection.LastIndexOf(item);
 
-                if (mergeColection[i].Equals(mergeColection[indexItem]))
+            for (int i = 0; i < items.Length; i++)
+            {
+                string item = items[i];
+
+                if (mergeColection.Contains(item)) 
+                { }
+                else
                 {
-                    mergeColection.RemoveAt(indexItem);
-                    i++;
+                    mergeColection.Add(item);
                 }
             }
+
+            mergeColection.Sort();
+        }
+
+        public static void ShowDisplay(List<string> colection)
+        {
+            Console.Write("Объединённая коллекци: ");
+
+            for (int i = 0; i < colection.Count; i++)
+            {
+                Console.Write($"{colection[i]} ");
+            }
+
+            Console.WriteLine();
         }
     }
 }
