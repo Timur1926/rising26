@@ -23,16 +23,13 @@ namespace MergeIntoOneArray
             for (int i = 0; i < items.Length; i++)
             {
                 string item = items[i];
+                bool haveItem = true;
 
-                if (mergeColection.Contains(item)) 
-                { }
-                else
+                if (haveItem != mergeColection.Contains(item)) 
                 {
                     mergeColection.Add(item);
                 }
             }
-
-            mergeColection.Sort();
         }
 
         public static void ShowDisplay(List<string> colection)
@@ -43,7 +40,6 @@ namespace MergeIntoOneArray
             {
                 Console.Write($"{colection[i]} ");
             }
-
             Console.WriteLine();
         }
     }
