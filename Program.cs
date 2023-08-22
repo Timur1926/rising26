@@ -1,46 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace MergeIntoOneArray
+namespace WorkingWithClasses
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string[] strings1 = new string[] { "1", "2", "1" };
-            string[] strings2 = new string[] { "1", "2", "3" };
+            Player player1 = new Player("Зверь", 50, 10, 100);
+            Player player2 = new Player("Пакимон", 60, 16, 80);
+            player1.DisplayInfoPlayer();
+            player2.DisplayInfoPlayer();
+        }
+    }
 
-            List<string> mergeColection = new List<string>();
+    class Player
+    {
+        private string _namePlayer;
+        private int _force;
+        private int _damage;
+        private int _life;
 
-            AddItemsInCollection(strings1, mergeColection);
-            AddItemsInCollection(strings2, mergeColection);
-            ShowDisplay(mergeColection);
+        public Player() { }
+
+        public Player(string name, int force, int damage, int life)
+        {
+            _namePlayer = name;
+            _force = force;
+            _damage = damage;
+            _life = life;
         }
 
-        public static void AddItemsInCollection(string[] items, List<string> mergeColection)
+        public void DisplayInfoPlayer()
         {
-
-            for (int i = 0; i < items.Length; i++)
-            {
-                string item = items[i];
-                bool haveItem = true;
-
-                if (haveItem != mergeColection.Contains(item)) 
-                {
-                    mergeColection.Add(item);
-                }
-            }
-        }
-
-        public static void ShowDisplay(List<string> colection)
-        {
-            Console.Write("Объединённая коллекци: ");
-
-            for (int i = 0; i < colection.Count; i++)
-            {
-                Console.Write($"{colection[i]} ");
-            }
-            Console.WriteLine();
+            Console.WriteLine($"Имя игрока: {_namePlayer}\t|Сила: {_force}\t|Урон: {_damage}\t|Количество жизни: {_life}");
         }
     }
 }
