@@ -1,38 +1,47 @@
 ﻿using System;
 
-namespace WorkingWithClasses
+namespace WorkingWithProperties
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Player player1 = new Player("Зверь", 50, 10, 100);
-            Player player2 = new Player("Пакимон", 60, 16, 80);
-            player1.DisplayInfoPlayer();
-            player2.DisplayInfoPlayer();
+            Draw player1 = new Draw();
+            Draw player2 = new Draw();
+            player1.X = 5;
+            player1.Y = 2;
+            player1.ShowPlayer();
+            player2.X = 10;
+            player2.Y = 5;
+            player2.ShowPlayer();
+
         }
     }
 
     class Player
     {
-        private string _namePlayer;
-        private int _force;
-        private int _damage;
-        private int _life;
+        public int X;
+        public int Y;
 
-        public Player() { }
+        public Player() { } 
+    }
 
-        public Player(string name, int force, int damage, int life)
+    class Draw : Player
+    {
+        private char player = '$';
+
+        public Draw() { }
+
+        public Draw(int positionX, int positionY) : base() 
         {
-            _namePlayer = name;
-            _force = force;
-            _damage = damage;
-            _life = life;
+            X = positionX;
+            Y = positionY;
         }
 
-        public void DisplayInfoPlayer()
+        public void ShowPlayer()
         {
-            Console.WriteLine($"Имя игрока: {_namePlayer}\t|Сила: {_force}\t|Урон: {_damage}\t|Количество жизни: {_life}");
+            Console.SetCursorPosition(X, Y);
+            Console.WriteLine(player);
         }
     }
 }
