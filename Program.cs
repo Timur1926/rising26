@@ -6,13 +6,9 @@ namespace WorkingWithProperties
     {
         static void Main(string[] args)
         {
-            Draw player1 = new Draw();
-            Draw player2 = new Draw();
-            player1.X = 5;
-            player1.Y = 2;
-            player1.ShowPlayer();
-            player2.X = 10;
-            player2.Y = 5;
+            Draw payer1 = new Draw(5, 2);
+            payer1.ShowPlayer();
+            Draw player2 = new Draw(10, 5);
             player2.ShowPlayer();
 
         }
@@ -20,24 +16,19 @@ namespace WorkingWithProperties
 
     class Player
     {
-        public int X;
-        public int Y;
-
-        public Player() { } 
+        protected int X;
+        protected int Y;
     }
 
     class Draw : Player
     {
         private char player = '$';
-
-        public Draw() { }
-
-        public Draw(int positionX, int positionY) : base() 
+        
+        public Draw(int positionX, int positionY) : base()
         {
             X = positionX;
             Y = positionY;
         }
-
         public void ShowPlayer()
         {
             Console.SetCursorPosition(X, Y);
