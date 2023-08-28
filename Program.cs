@@ -19,8 +19,6 @@ namespace WorkingWithProperties
         protected int _positionX;
         protected int _positionY;
 
-        public Draw() { }
-
         public Draw(int positionX, int positionY)
         {
             _positionX = positionX;
@@ -34,16 +32,8 @@ namespace WorkingWithProperties
         }
     }
 
-    class Player : Draw
+    class Player 
     {
         public char simbolPlayer = '$';
-
-        public Player() { }
-
-        public Player(int positionX, int positionY) : base(positionX, positionY)
-        {
-            _positionX = positionX;
-            _positionY = positionY;
-        }
     }
 }
