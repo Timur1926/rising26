@@ -6,33 +6,44 @@ namespace WorkingWithProperties
     {
         static void Main(string[] args)
         {
-            Draw payer1 = new Draw(5, 2);
-            payer1.ShowPlayer();
+            Player simbolPlayer = new Player();
+            Draw payer1 = new Draw(5,2);
+            payer1.ShowPlayer(simbolPlayer.simbolPlayer);
             Draw player2 = new Draw(10, 5);
-            player2.ShowPlayer();
-
+            player2.ShowPlayer(simbolPlayer.simbolPlayer);
         }
     }
 
-    class Player
+    class Draw
     {
-        protected int X;
-        protected int Y;
-    }
+        protected int _positionX;
+        protected int _positionY;
 
-    class Draw : Player
-    {
-        private char player = '$';
+        public Draw() { }
+
+        public Draw(int positionX, int positionY)
+        {
+            _positionX = positionX;
+            _positionY = positionY;
+        }
         
-        public Draw(int positionX, int positionY) : base()
+        public void ShowPlayer(char playerSimbol)
         {
-            X = positionX;
-            Y = positionY;
+            Console.SetCursorPosition(_positionX, _positionY);
+            Console.WriteLine(playerSimbol);
         }
-        public void ShowPlayer()
+    }
+
+    class Player : Draw
+    {
+        public char simbolPlayer = '$';
+
+        public Player() { }
+
+        public Player(int positionX, int positionY) : base(positionX, positionY)
         {
-            Console.SetCursorPosition(X, Y);
-            Console.WriteLine(player);
+            _positionX = positionX;
+            _positionY = positionY;
         }
     }
 }
