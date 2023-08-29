@@ -6,35 +6,33 @@ namespace WorkingWithProperties
     {
         static void Main(string[] args)
         {
-            Draw drawPlayer = new Draw();
-            drawPlayer.ShowPlayer();
+            Draw displayInfo = new Draw();
+            displayInfo.ShowPlayer(5,2,'$');
+            Draw displayInfo2 = new Draw();
+            displayInfo2.ShowPlayer(10, 5, '&');
         }
     }
 
     class Draw
     {
-        Player player = new Player();
-
-        public void ShowPlayer()
+        public void ShowPlayer(int positionX, int positionY, char simbol)
         {
-            Console.SetCursorPosition(player.PositionX, player.PositionY);
-            Console.WriteLine(player.SimbolPlayer);
+            Console.SetCursorPosition(positionX, positionY);
+            Console.WriteLine(simbol);
         }
     }
 
     class Player 
     {
-        public char SimbolPlayer = '$';
-        public int PositionX = 5;
-        public int PositionY = 2;
+        public char _simbol { get { return _simbol; } private set { _simbol = value; } }
+        public int _positionX { get { return _positionX; } private set { _positionX = value; } }
+        public int _positionY { get { return _positionY; } private set { _positionY = value; } }
 
-        public Player() { }
-
-        public Player (int positionX,  int positionY, char simbolPlayer)
+        public Player (int positionX,  int positionY, char simbol)
         {
-            PositionX = positionX;
-            PositionY = positionY;
-            SimbolPlayer = simbolPlayer;
+            _positionX = positionX;
+            _positionY = positionY;
+            _simbol = simbol;
         }
     }
 }
