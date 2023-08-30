@@ -25,15 +25,15 @@ namespace WorkingWithProperties
 
     class Player 
     {
-        public char Simbol { get; private set; }
-        public int PositionX { get; private set; }
-        public int PositionY { get; private set; }
-
         public Player (int positionX,  int positionY, char simbol)
         {
             PositionX = positionX;
             PositionY = positionY;
             Simbol = simbol;
         }
+
+        public char Simbol { get; private set; }
+        public int PositionX { get; private set; }
+        public int PositionY { get; private set; }
     }
 }
