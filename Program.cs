@@ -7,9 +7,14 @@ namespace PlayerDatabase
     {
         static void Main(string[] args)
         {
-
+            const string addNewUser = "1";
+            const string listUser = "2";
+            const string banUser = "3";
+            const string unBlockUser = "4";
+            const string deletUser = "5";
+            const string programExit = "6";
             bool canExit = true;
-            Player user = new Player();
+            DataBase info = new DataBase();
 
             Console.WriteLine("\tМеню");
             Console.WriteLine("кнопка 1: добавить нового игрока");
@@ -22,34 +27,35 @@ namespace PlayerDatabase
             while (canExit)
             {
                 Console.WriteLine("--------------------------");
-                Console.Write("Выбери номер команды:");
+                Console.Write("Выбери номер команды: ");
                 string comandNumber;
                 comandNumber = Console.ReadLine();
+                Console.WriteLine("--------------------------");
 
                 switch (comandNumber)
                 {
 
-                    case "1":
-                        user.UserNew();
+                    case addNewUser:
+                        info.UserNew();
                         break;
 
-                    case "2":
-                        user.InfoDataPlayers();
+                    case listUser:
+                        info.ShouUserInfo();
                         break;
 
-                    case "3":
-                        user.PayerLock();
+                    case banUser:
+                        info.UserLock();
                         break;
 
-                    case "4":
-                        user.PlayerUnLock();
+                    case unBlockUser:
+                        info.UserUnLock();
                         break;
 
-                    case "5":
-                        user.PlayerDelit();
+                    case deletUser:
+                        info.UserDelet();
                         break;
 
-                    case "6":
+                    case programExit:
                         canExit = false;
                         break;
 
@@ -65,42 +71,25 @@ namespace PlayerDatabase
 
     class DataBase
     {
-        protected Dictionary<int, string> DataPlayers = new Dictionary<int, string>();
-    }
-
-    class Player : DataBase
-    {
-        protected string _nickName = null;
-        protected int _iD = 0;
-        protected string _level = null;
-        protected bool _banPlayer;
+        public Dictionary<int, string> informations = new Dictionary<int, string>();
+        Player userNew = new Player();
 
         public void UserNew()
-
         {
-            _iD++;
-            Console.WriteLine("----------------------");
-            Console.WriteLine("Заполни свои данные");
-            Console.Write("Введи свой nick name: ");
-            _nickName = Console.ReadLine();
-            Console.Write("Введи свой уровень: ");
-            _level = Console.ReadLine();
-            string userNew = $"{_nickName }\t\t{_level}\t\t{_iD}";
-            DataPlayers.Add(_iD, userNew);
+            informations.Add(userNew.Id, userNew.UserNew());
         }
 
-        public void InfoDataPlayers()
+        public void ShouUserInfo()
         {
-            Console.WriteLine("------------------------------------------");
-            Console.WriteLine("Имя игрока | Уровень игрока | ID игрока");
             int id = 1;
+            Console.WriteLine("Nikname\t\tLevel\t\tID");
 
-            for (int i = 0; i < DataPlayers.Count; )
+            for (int i = 0; i < informations.Count;)
             {
-                
-                if (DataPlayers.ContainsKey(id))
+
+                if (informations.ContainsKey(id))
                 {
-                    Console.WriteLine(DataPlayers[id]);
+                    Console.WriteLine(informations[id]);
                     id++;
                     i++;
                 }
@@ -111,52 +100,61 @@ namespace PlayerDatabase
             }
         }
 
-        public void PayerLock()
+        public void UserLock()
         {
-            Console.Write("ID игрока для блокировки: ");
-            int id = Int32.Parse(Console.ReadLine());
-            string playerLock = "\t\t!!!Игрок заблокирован!!!";
+            Console.Write("=> Выбери номер ID для блокировки: ");
+            string identification = Console.ReadLine();
+            Int32.TryParse(identification, out int id);
 
-            for (int i = 0; i < DataPlayers.Count; i++)
+            if (informations.ContainsKey(id))
             {
-                _banPlayer = DataPlayers[id].EndsWith(playerLock);
-
-                if (_banPlayer)
-                {
-                    Console.WriteLine("!!!! ID уже заблокирован");
-                    i = DataPlayers.Count;
-                }
-                else
-                {
-                    DataPlayers[id] = DataPlayers[id] + playerLock;
-                    i = DataPlayers.Count;
-                }
+                informations[id] += $"\t\t!!! заблокирован !!!";
             }
         }
 
-        public void PlayerUnLock()
+        public void UserUnLock()
         {
-            Console.Write("ID игрока для разблокировки: ");
-            int id = Int32.Parse(Console.ReadLine());
-            string playerLock = "\t\t!!!Игрок заблокирован!!!";
+            Console.Write("=> Выбери номер ID для разблокировки: ");
+            string identification = Console.ReadLine();
+            Int32.TryParse(identification, out int id);
+            string playerLock = "\t\t!!! заблокирован !!!";
 
-            for (int i = 0; i < DataPlayers.Count; i++)
+            if (informations.ContainsKey(id))
             {
-                DataPlayers[id] = DataPlayers[id].TrimEnd(playerLock.ToCharArray());
-                i = DataPlayers.Count;
+                informations[id] = informations[id].TrimEnd(playerLock.ToCharArray());
             }
         }
 
-        public void PlayerDelit()
+        public void UserDelet()
         {
-            Console.Write("ID игрока для удоления: ");
-            int id = Int32.Parse(Console.ReadLine());
+            Console.Write("=> Выбери ID для удоления: ");
+            string identification = Console.ReadLine();
+            Int32.TryParse(identification, out int id);
 
-            for (int i = 0; i < DataPlayers.Count; i++)
+            if (informations.ContainsKey(id))
             {
-                DataPlayers.Remove(id);
-                i = DataPlayers.Count;
+                informations.Remove(id);
             }
+        }
+    }
+
+    class Player
+    {
+        private string _nickName;
+        private string _level;
+        public int Id = 1;
+
+        public string UserNew()
+        {
+            string userInfo;
+            Console.WriteLine("\tВвод данных");
+            Console.Write("Придумай nickname: ");
+            _nickName = Console.ReadLine();
+            Console.Write("Твой уровень: ");
+            _level = Console.ReadLine();
+            userInfo = $"{_nickName}\t\t{_level}\t\t{Id}";
+            Id++;
+            return userInfo;
         }
     }
 }
