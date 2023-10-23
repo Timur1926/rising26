@@ -64,7 +64,6 @@ namespace PlayerDatabase
                         break;
                 }
             }
-
             Console.Clear();
         }
     }
