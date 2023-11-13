@@ -14,7 +14,7 @@ namespace PlayerDatabase
             const string deletUser = "5";
             const string programExit = "6";
             bool canExit = true;
-            DataBase info = new DataBase();
+            Database info = new Database();
 
             Console.WriteLine("\tМеню");
             Console.WriteLine("кнопка 1: добавить нового игрока");
@@ -36,23 +36,23 @@ namespace PlayerDatabase
                 {
 
                     case addNewUser:
-                        info.UserNew();
+                        info.AddDataNew();
                         break;
 
                     case listUser:
-                        info.ShouUserInfo();
+                        info.ShowUsersInfo();
                         break;
 
                     case banUser:
-                        info.UserLock();
+                        info.LockUser();
                         break;
 
                     case unBlockUser:
-                        info.UserUnLock();
+                        info.UnLockUser();
                         break;
 
                     case deletUser:
-                        info.UserDelet();
+                        info.DeletUser();
                         break;
 
                     case programExit:
@@ -68,27 +68,28 @@ namespace PlayerDatabase
         }
     }
 
-    class DataBase
+    class Database
     {
-        public Dictionary<int, string> informations = new Dictionary<int, string>();
-        Player userNew = new Player();
+        Dictionary<int, string> _informations = new Dictionary<int, string>();
+        Player _player = new Player();
 
-        public void UserNew()
+        public void AddDataNew()
         {
-            informations.Add(userNew.Id, userNew.UserNew());
+            _informations.Add(_player._id, _player.AddPlayer());
         }
 
-        public void ShouUserInfo()
+        public void ShowUsersInfo()
         {
+            
             int id = 1;
             Console.WriteLine("Nikname\t\tLevel\t\tID");
 
-            for (int i = 0; i < informations.Count;)
+            for (int i = 0; i < _informations.Count;)
             {
 
-                if (informations.ContainsKey(id))
+                if (_informations.ContainsKey(id))
                 {
-                    Console.WriteLine(informations[id]);
+                    Console.WriteLine(_informations[id]);
                     id++;
                     i++;
                 }
@@ -99,40 +100,41 @@ namespace PlayerDatabase
             }
         }
 
-        public void UserLock()
+        public void LockUser()
         {
             Console.Write("=> Выбери номер ID для блокировки: ");
-            string identification = Console.ReadLine();
-            Int32.TryParse(identification, out int id);
+            string number = Console.ReadLine();
+            Int32.TryParse(number, out int id);
+            string userLock = "!!!Игрок заблокирован!!!";
 
-            if (informations.ContainsKey(id))
+            if (_informations.ContainsKey(id))
             {
-                informations[id] += $"\t\t!!! заблокирован !!!";
+                _informations[id] = $"{_informations[id]}\t\t{userLock}";
             }
         }
 
-        public void UserUnLock()
+        public void UnLockUser()
         {
             Console.Write("=> Выбери номер ID для разблокировки: ");
             string identification = Console.ReadLine();
             Int32.TryParse(identification, out int id);
-            string playerLock = "\t\t!!! заблокирован !!!";
+            string userLock = "!!!Игрок заблокирован!!!";
 
-            if (informations.ContainsKey(id))
+            if (_informations.ContainsKey(id))
             {
-                informations[id] = informations[id].TrimEnd(playerLock.ToCharArray());
+                _informations[id] = _informations[id].TrimEnd(userLock.ToCharArray());
             }
         }
 
-        public void UserDelet()
+        public void DeletUser()
         {
             Console.Write("=> Выбери ID для удоления: ");
             string identification = Console.ReadLine();
             Int32.TryParse(identification, out int id);
 
-            if (informations.ContainsKey(id))
+            if (_informations.ContainsKey(id))
             {
-                informations.Remove(id);
+                _informations.Remove(id);
             }
         }
     }
@@ -141,22 +143,20 @@ namespace PlayerDatabase
     {
         private string _nickName;
         private string _level;
-        public int Id = 1;
+        internal int _id = 1;
 
-        public string UserNew()
+        public string AddPlayer()
         {
+
             string userInfo;
             Console.WriteLine("\tВвод данных");
             Console.Write("Придумай nickname: ");
             _nickName = Console.ReadLine();
             Console.Write("Твой уровень: ");
             _level = Console.ReadLine();
-            userInfo = $"{_nickName}\t\t{_level}\t\t{Id}";
-            Id++;
+            userInfo = $"{_nickName}\t\t{_level}\t\t{_id}";
+            _id++;
             return userInfo;
         }
     }
 }
-
-
-
