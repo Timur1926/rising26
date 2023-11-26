@@ -48,7 +48,7 @@ namespace PlayerDatabase
                         break;
 
                     case ComandUnBlockUser:
-                       info.UnLockUser();
+                        info.UnLockUser();
                         break;
 
                     case ComandDeletUser:
@@ -145,7 +145,7 @@ namespace PlayerDatabase
             Console.Write("Удолить игрока с номером id: ");
             int key = Int32.Parse(Console.ReadLine());
 
-            if(_players.ContainsKey(key))
+            if (_players.ContainsKey(key))
             {
                 _players.Remove(key);
             }
