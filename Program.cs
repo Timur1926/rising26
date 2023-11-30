@@ -75,18 +75,7 @@ namespace PlayerDatabase
         private Dictionary<int, Player> _players = new Dictionary<int, Player>();
         private int _id = 1;
         private bool _canLock = false;
-        private bool GetTryPlayer(Player player)
-        {
 
-            if (player != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         public void AddUserNew()
         {
             Console.Write("Придумай себе имя: ");
@@ -96,6 +85,7 @@ namespace PlayerDatabase
             _players.Add(_id, new Player(name, level, _id, _canLock));
             _id++;
         }
+
         public void ShowUsersInfo()
         {
             Console.WriteLine($"Nickname\tLevel\t\tId");
@@ -115,6 +105,7 @@ namespace PlayerDatabase
             }
 
         }
+
         public void LockUser()
         {
             Console.Write("Заблокировать игрока с номером id: ");
@@ -131,6 +122,7 @@ namespace PlayerDatabase
             }
 
         }
+
         public void UnLockUser()
         {
             Console.Write("Разблокировать игрока с номером id: ");
@@ -151,6 +143,7 @@ namespace PlayerDatabase
             }
 
         }
+
         public void DeletUser()
         {
             Console.Write("Удолить игрока с номером id: ");
@@ -177,6 +170,7 @@ namespace PlayerDatabase
     class Player
     {
         public bool IsPlayerBlocked;
+
         public Player(string nickName, string level, int id, bool canLock)
         {
             NickName = nickName;
@@ -185,6 +179,7 @@ namespace PlayerDatabase
             IsPlayerBlocked = canLock;
 
         }
+
         public string NickName { get; private set; }
         public string Level { get; private set; }
         public int Id { get; private set; }
