@@ -69,6 +69,7 @@ namespace PlayerDatabase
             Console.Clear();
         }
     }
+
     class Database
     {
         private Dictionary<int, Player> _players = new Dictionary<int, Player>();
@@ -172,6 +173,7 @@ namespace PlayerDatabase
         }
 
     }
+
     class Player
     {
         public bool IsPlayerBlocked;
