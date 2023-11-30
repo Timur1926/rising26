@@ -14,15 +14,15 @@ namespace PlayerDatabase
             const string ComandDeletUser = "5";
             const string ComandProgramExit = "6";
             bool canExit = true;
-            Database info = new Database();
+            Database database = new Database();
 
             Console.WriteLine("\tМеню");
-            Console.WriteLine("кнопка 1: добавить нового игрока");
-            Console.WriteLine("кнопка 2: показать всех игроков");
-            Console.WriteLine("кнопка 3: наложить запрет на игрока");
-            Console.WriteLine("кнопка 4: снять запрет с игрока");
-            Console.WriteLine("кнопка 5: удолить игрока");
-            Console.WriteLine("кнопка 6: выход из программы");
+            Console.WriteLine($"кнопка {ComandAddNewUser}: добавить нового игрока");
+            Console.WriteLine($"кнопка {ComandListUser}: показать всех игроков");
+            Console.WriteLine($"кнопка {ComandBanUser}: наложить запрет на игрока");
+            Console.WriteLine($"кнопка {ComandUnBlockUser}: снять запрет с игрока");
+            Console.WriteLine($"кнопка {ComandDeletUser}: удолить игрока");
+            Console.WriteLine($"кнопка {ComandProgramExit}: выход из программы");
 
             while (canExit)
             {
@@ -36,23 +36,23 @@ namespace PlayerDatabase
                 {
 
                     case ComandAddNewUser:
-                        info.AddUserNew();
+                        database.AddUserNew();
                         break;
 
                     case ComandListUser:
-                        info.ShowUsersInfo();
+                        database.ShowUsersInfo();
                         break;
 
                     case ComandBanUser:
-                        info.LockUser();
+                        database.LockUser();
                         break;
 
                     case ComandUnBlockUser:
-                        info.UnLockUser();
+                        database.UnLockUser();
                         break;
 
                     case ComandDeletUser:
-                        info.DeletUser();
+                        database.DeletUser();
                         break;
 
                     case ComandProgramExit:
@@ -63,17 +63,29 @@ namespace PlayerDatabase
                         Console.WriteLine("!!!!! Такой команды в меню нет !!!!!");
                         break;
                 }
+
             }
+
             Console.Clear();
         }
     }
-
     class Database
     {
         private Dictionary<int, Player> _players = new Dictionary<int, Player>();
         private int _id = 1;
         private bool _canLock = false;
+        private bool GetTryPlayer(Player player)
+        {
 
+            if (player != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public void AddUserNew()
         {
             Console.Write("Придумай себе имя: ");
@@ -83,44 +95,41 @@ namespace PlayerDatabase
             _players.Add(_id, new Player(name, level, _id, _canLock));
             _id++;
         }
-
         public void ShowUsersInfo()
         {
             Console.WriteLine($"Nickname\tLevel\t\tId");
 
-            foreach (var item in _players)
+            foreach (var player in _players)
             {
 
-                if (item.Value.IsPlayerBlocked)
+                if (player.Value.IsPlayerBlocked)
                 {
-                    Console.WriteLine($"{item.Value.NickName}\t\t{item.Value.Level}\t\t{item.Value.Id}\t!!! игрок заблокирован !!!");
+                    Console.WriteLine($"{player.Value.NickName}\t\t{player.Value.Level}\t\t{player.Value.Id}\t!!! игрок заблокирован !!!");
                 }
                 else
                 {
-                    Console.WriteLine($"{item.Value.NickName}\t\t{item.Value.Level}\t\t{item.Value.Id}");
+                    Console.WriteLine($"{player.Value.NickName}\t\t{player.Value.Level}\t\t{player.Value.Id}");
                 }
-            }
-        }
 
+            }
+
+        }
         public void LockUser()
         {
             Console.Write("Заблокировать игрока с номером id: ");
             string result = Console.ReadLine();
+            Int32.TryParse(result, out int key);
 
-            if (Int32.TryParse(result, out int key))
+            if (_players.ContainsKey(key))
             {
-
-                if (_players.ContainsKey(key))
-                {
-                    _players[key].IsPlayerBlocked = true;
-                }
+                _players[key].IsPlayerBlocked = true;
             }
             else
             {
                 Console.WriteLine("!!! некоретный ввод !!! нкжен id");
             }
-        }
 
+        }
         public void UnLockUser()
         {
             Console.Write("Разблокировать игрока с номером id: ");
@@ -137,38 +146,45 @@ namespace PlayerDatabase
                 {
                     Console.WriteLine("!!! некоретный ввод !!! нужен id");
                 }
-            }
-        }
 
+            }
+
+        }
         public void DeletUser()
         {
             Console.Write("Удолить игрока с номером id: ");
-            int key = Int32.Parse(Console.ReadLine());
+            string result = Console.ReadLine();
 
-            if (_players.ContainsKey(key))
+            if (Int32.TryParse(result, out int key))
             {
-                _players.Remove(key);
+
+                if (_players.ContainsKey(key))
+                {
+                    _players.Remove(key);
+                }
+                else
+                {
+                    Console.WriteLine("!!!ERROR!!! Такого игрока в базе нет!!!");
+                }
+
             }
-            else
-            {
-                Console.WriteLine("!!!ERROR!!! Такого игрока в базе нет!!!");
-            }
+
         }
-    }
 
+    }
     class Player
     {
-        public string NickName { get; private set; }
-        public string Level { get; private set; }
-        public int Id { get; private set; }
-        public bool IsPlayerBlocked { get; set; }
-
+        public bool IsPlayerBlocked;
         public Player(string nickName, string level, int id, bool canLock)
         {
             NickName = nickName;
             Level = level;
             Id = id;
             IsPlayerBlocked = canLock;
+
         }
+        public string NickName { get; private set; }
+        public string Level { get; private set; }
+        public int Id { get; private set; }
     }
 }
