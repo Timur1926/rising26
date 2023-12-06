@@ -76,6 +76,20 @@ namespace PlayerDatabase
         private int _id = 1;
         private bool _canLock = false;
 
+        private bool GetTryPlayer(Player player)
+        {
+
+            if (player != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
         public void AddUserNew()
         {
             Console.Write("Придумай себе имя: ");
@@ -108,17 +122,22 @@ namespace PlayerDatabase
 
         public void LockUser()
         {
-            Console.Write("Заблокировать игрока с номером id: ");
-            string result = Console.ReadLine();
-            Int32.TryParse(result, out int key);
 
-            if (_players.ContainsKey(key))
+            Console.Write("Заблокировать игрока с номером id: ");
+            string id = Console.ReadLine();
+
+            if (Int32.TryParse(id, out int key))
             {
-                _players[key].IsPlayerBlocked = true;
+                
+                if (GetTryPlayer(_players[key]))
+                {
+                    _players[key].IsPlayerBlocked = true;
+                }
+
             }
             else
             {
-                Console.WriteLine("!!! некоретный ввод !!! нкжен id");
+                Console.WriteLine("Ошибка ввода!!! Нужен номер id!!!");
             }
 
         }
@@ -126,20 +145,20 @@ namespace PlayerDatabase
         public void UnLockUser()
         {
             Console.Write("Разблокировать игрока с номером id: ");
-            string result = Console.ReadLine();
+            string id = Console.ReadLine();
 
-            if (Int32.TryParse(result, out int key))
+            if (Int32.TryParse(id, out int key))
             {
 
-                if (_players.ContainsKey(key))
+                if (GetTryPlayer(_players[key]))
                 {
                     _players[key].IsPlayerBlocked = false;
                 }
-                else
-                {
-                    Console.WriteLine("!!! некоретный ввод !!! нужен id");
-                }
 
+            }
+            else
+            {
+                Console.WriteLine("Ошибка ввода!!! Нужен номер id!!!");
             }
 
         }
@@ -147,20 +166,18 @@ namespace PlayerDatabase
         public void DeletUser()
         {
             Console.Write("Удолить игрока с номером id: ");
-            string result = Console.ReadLine();
+            string id = Console.ReadLine();
 
-            if (Int32.TryParse(result, out int key))
+            if(Int32.TryParse(id, out int key))
             {
-
-                if (_players.ContainsKey(key))
+                if (GetTryPlayer(_players[key]))
                 {
                     _players.Remove(key);
                 }
-                else
-                {
-                    Console.WriteLine("!!!ERROR!!! Такого игрока в базе нет!!!");
-                }
-
+            }
+            else
+            {
+                Console.WriteLine("Ошибка ввода!!! Нужен номер id!!!");
             }
 
         }
@@ -179,6 +196,8 @@ namespace PlayerDatabase
             IsPlayerBlocked = canLock;
 
         }
+
+        public Player() { }
 
         public string NickName { get; private set; }
         public string Level { get; private set; }
