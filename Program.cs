@@ -122,7 +122,6 @@ namespace PlayerDatabase
 
         public void LockUser()
         {
-
             Console.Write("Заблокировать игрока с номером id: ");
             string id = Console.ReadLine();
 
